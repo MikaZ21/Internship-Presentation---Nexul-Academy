@@ -1,0 +1,177 @@
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: 60px;
+}
+
+.slide {
+    padding: 50px 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;;
+    }
+    50% {
+        background-position: 100% 50%;
+    } 
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#slide1 {
+    margin: 0;
+    max-width: none;
+    background: linear-gradient(-20deg, #000537,#003366, #4a90e2, #4f9d7e, #003366, #000537);
+    background-size: 300% 300%;
+    animation: gradientBackground 15s ease infinite;
+    color: #fff;
+    padding-top: 150px; /* Increase padding to create more height */
+    height: 50vh; /* Full viewport height */
+    text-align: center;
+    border-radius: 0; /* Remove border radius for a full-width effect */
+    box-shadow: none; /* Remove box-shadow for the first slide */
+}
+
+.gurufyre-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff; /* Button color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.gurufyre-link:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+h1, h2 {
+    color: inherit; /* Inherit color for white text on slide1 */
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 48px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-family: "Handlee", cursive;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#slide1 p {
+    /* color: #e0e0e0; Slightly lighter text color for better readability */
+    color: #8d0071ba;
+}
+
+.slide:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.intro-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+#slide2 p {
+    text-align: left;
+}
+
+.intro-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+.intro-content p {
+    margin: 0;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.feature-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.feature-objective {
+    text-align: center;
+    max-width: 800px;
+}
+
+.feature-photo {
+    width: 600px; /* Keep the image size as desired */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-description, .feature-uxui {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.feature-description {
+    margin-right: 20px;
+}
+
+.feature-text-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.feature-text {
+    max-width: 600px;
+}
+
+.feature-text h3 {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.feature-text p {
+    margin: 5px 0;
+    line-height: 1.6;
+    text-align: left;
+}
