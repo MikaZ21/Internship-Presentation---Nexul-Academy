@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internship Presentation</title>
+    <title>Internship Report</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 <body>
     <div class="slide" id="slide1">
         <img src="images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo">
-        <h1>Internship Presentation</h1>
+        <h1>Internship Report</h1>
         <h2>Full-Stack Web Development at <br>
             Nexul Academy</h2>
         <p>Welcome to my presentation on the work I completed during my internship.</p>
@@ -34,12 +34,16 @@
                  ensuring seamless integration with the existing system.
             </p>
         </div>
+        <div class="arrow-container">
+            <a href="#slide3" class="down-arrow" onclick="smoothScroll('#slide3')">&#x25BC;</a>
+        </div>
     </div>
 
     <div class="slide" id="slide3">
         <h2>Checklist Feature Overview</h2>
-        <div class="feature-content">
-            <div class="feature-text feature-objective">
+        <div class="feature-grid">
+            <!-- Left Top -->
+            <div class="feature-item feature-objective">
                 <h3>Feature Objective:</h3>
                 <p>The checklist feature is designed to display a list of useful knowledge 
                     and preparation items on the lesson page for students to know before 
@@ -47,10 +51,8 @@
                     efficiency by helping students prepare and engage smoothly with the lesson content.
                 </p>
             </div>
-
-            <img src="images/checklist.png" alt="checklist for lesson" class="feature-photo">
-
-            <div class="feature-text feature-description">
+            <!-- Right Top -->
+            <div class="feature-item feature-description">
                 <h3>Feature Description:</h3>
                 <p>Instructors can create and edit checklist for each lesson, 
                     allowing them to add or edit items as needed.
@@ -58,14 +60,23 @@
                     enabling students to effectively prepare for their learning tasks and track their progress.
                 </p>
             </div>
-            <div class="feature-text feature-uxui">
+            <!-- Left Bottom -->
+            <div class="feature-item feature-photo-container">
+                <img src="images/checklist.png" alt="checklist for lesson" class="feature-photo">
+            </div>
+            <!-- Right Bottom -->
+            <div class="feature-item feature-uxui">
                 <h3>UX/UI Considerations:</h3>
                 <p>The design of the checklist feature focuses on simplicity and ease of use,
                     ensuring that users can navigate and utilize the feature without unnecessary complexity.
                     Angular Material components were used to maintain consistency with
                     the overall design of the GuruFyre platform.
                 </p>
+                <img src="images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bottom">
             </div>
+        </div>
+        <div class="arrow-container">
+            <a href="#slide4" class="down-arrow" onclick="smoothScroll('#slide4')">&#x25BC;</a>
         </div>
     </div>
     
