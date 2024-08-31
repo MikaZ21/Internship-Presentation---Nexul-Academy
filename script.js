@@ -32,5 +32,12 @@ function smoothScroll(target) {
         return -c / 2 * (t * (t - 2) - 1) + b;
     }
 
-    requestAnimationFrame(animationScroll); // アニメーションを開始
+    requestAnimationFrame(animationScroll);
+}
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
