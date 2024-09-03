@@ -35,9 +35,52 @@ function smoothScroll(target) {
     requestAnimationFrame(animationScroll);
 }
 
+document.addEventListener('scroll', function() {
+    const scrollUpButton = document.querySelector('.scroll-up-button'); // ボタンの要素を取得
+    const slide3 = document.getElementById('slide3'); // スライド3の要素を取得
+    
+    // スライド3の中間位置を計算
+    const middleOfSlide3 = slide3.offsetTop + (slide3.offsetHeight / 2);
+    
+    // 現在のスクロール位置
+    const scrollPosition = window.scrollY + window.innerHeight;
+    
+    // スクロール位置がスライド3の中間を超えた場合
+    if (scrollPosition > middleOfSlide3) {
+        scrollUpButton.style.opacity = '1'; // ボタンを表示
+    } else {
+        scrollUpButton.style.opacity = '0'; // ボタンを非表示
+    }
+});
+
 function scrollToTop() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
 }
+
+// slide.5
+function showTooltip(event) {
+    const tooltip = document.getElementById("codeTooltip");
+    
+    // クリックした要素の位置を取得
+    const rect = event.target.getBoundingClientRect();
+    
+    // ツールチップの位置を調整して表示
+    tooltip.style.left = `${rect.left}px`;
+    tooltip.style.top = `${rect.bottom + window.scrollY}px`;
+    tooltip.style.display = "block";
+}
+
+function hideTooltip() {
+    document.getElementById("codeTooltip").style.display = "none";
+}
+
+// 外側をクリックするとツールチップを非表示にする
+window.onclick = function(event) {
+    const tooltip = document.getElementById("codeTooltip");
+    if (!event.target.matches('.clickable-code') && !tooltip.contains(event.target)) {
+        hideTooltip();
+    }
+};

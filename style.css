@@ -195,7 +195,7 @@ p {
 
 .feature-uxui {
     grid-area: 2 / 2;
-    background-color: #f3d4f8;
+    background-color: #f2ddf6;
     position: relative;
     padding-bottom: 100px;
     overflow: hidden;
@@ -288,6 +288,23 @@ p {
 .skill-block p {
     text-align: left;
     margin: 0;
+}
+
+.material-row {
+    display: flex; /* Flexboxで横並びに */
+    align-items: center; /* アイコンとテキストを中央揃え */
+    gap: 10px; /* アイコンとテキストの間のスペース */
+    margin-bottom: 10px; /* 下に少しスペース */
+}
+
+.material-row img {
+    width: 80px; /* アイコンのサイズを調整 */
+    height: auto; /* アスペクト比を保つ */
+}
+
+.material-row span {
+    font-size: 30px; /* テキストのサイズ */
+    font-weight: bold; /* テキストの太さ */
 }
 
 .icon-row {
@@ -412,6 +429,8 @@ p {
     position: fixed; /* フッターの直上に固定 */
     right: 20px; /* 右端に配置 */
     bottom: 100px; /* フッターの少し上に配置 */
+    opacity: 0; /* 初期状態は非表示 */
+    transition: opacity 0.7s ease; /* フェードインの効果 */
     z-index: 10; /* 他の要素の上に表示されるように */
 }
 
@@ -437,5 +456,83 @@ p {
 
 .scroll-up-button i {
     font-size: 20px; 
-    transform: scale(1.2, 1.4); /* 縦方向に拡大して太く見せる */
+    transform: scale(1.2, 1.4);
+}
+
+/* slide.5 */
+.challenge {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+}
+
+.challenge p {
+    text-align: left;
+}
+
+.challenge code {
+    background-color: #d9eecd;
+}
+
+.code-section {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.code-section code {
+    background-color: transparent;
+}
+
+pre {
+    background-color: #272822;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+.highlight {
+    color: #ff6347;
+    font-weight: bold; 
+}
+
+.fixed-highlight {
+    color: #2ba284;
+    font-weight: bold; 
+}
+
+.tooltip {
+    display: none; /* デフォルトでは非表示 */
+    position: absolute; /* 絶対位置 */
+    z-index: 10;
+    background-color: #a6d2ea;
+    padding: 10px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+pre.tooltip-code {
+    padding-right: 15px;
+    margin: 0;
+}
+
+.tooltip-code code {
+    background-color: transparent;
+}
+.clickable-code {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
 }
