@@ -1,0 +1,83 @@
+@import '../../../styles.scss';
+
+#slide3 {
+    padding: 20px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+    padding: 0 50px;
+}
+
+.feature-item {
+    padding: 20px;
+    color: $dark-gray;
+}
+
+.feature-item:hover {
+    background-color: $light-blue;
+}
+
+.feature-item p {
+    margin: 0;
+    line-height: 1.6;
+    text-align: start;
+    padding-left: 10px;
+}
+
+.feature-objective h3,
+.feature-description h3,
+.feature-uxui h3 {
+    padding: 10px;
+    padding-left: 30px;
+    border-radius: 0 0 10px 10px;
+    margin: -20px -20px 20px -20px;
+    font-size: 20px;
+}
+
+.feature-objective {
+    grid-area: 1 / 1;
+    background-color: $light-green;
+}
+
+.feature-description {
+    grid-area: 1 / 2;
+    background-color: #eed8b5;
+}
+
+.feature-uxui {
+    grid-area: 2 / 2;
+    background-color: #f2ddf6;
+    position: relative;
+    padding-bottom: 100px;
+    overflow: hidden;
+}
+
+.feature-objective h3 {
+    background-color: #80c857;
+}
+
+.feature-description h3 {
+    background-color: $accent-orange;
+}
+
+.feature-uxui h3 {
+    background-color: $accent-purple;
+}
+
+.featur-demo-container {
+    grid-area: 2 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.feature-demo {
+    max-width: 100%;
+}

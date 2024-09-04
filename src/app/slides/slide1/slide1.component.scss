@@ -1,0 +1,29 @@
+@import '../../../styles.scss';
+
+#slide1 {
+    margin: 0;
+    max-width: none;
+    background: linear-gradient(
+        -20deg, 
+        $gradient-start, 
+        $gradient-mid1, 
+        $gradient-mid2, 
+        $gradient-mid3, 
+        $gradient-mid1, 
+        $gradient-start
+    );
+  
+    background-size: 300% 300%;
+    animation: gradientBackground 15s ease infinite; // Uses global keyframes from styles.scss
+    color: $white; // Use the color variable defined in the global file
+    padding-top: 150px; 
+    height: 50vh; 
+    text-align: center;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  #slide1 p {
+    color: #852694;
+    font-weight: 400;
+}

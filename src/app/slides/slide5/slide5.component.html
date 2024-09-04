@@ -1,1 +1,125 @@
-<p>slide5 works!</p>
+<div class="slide" id="slide5">
+    <h2>Challenges and Improvements</h2>
+    <div class="challenge">
+        <h3>Challenge 1: Using FormArray and Binding Issues</h3>
+        <p>When implementing the checklist dialog, there were issues with handling multiple checklist items
+            using <code>FormArray</code>. Initially, <code class="clickable-code" (click)="showTooltip($event)">[formGroup]="getFormGroup(i)"</code> was used to dynamically bind each
+            checklist item form in a loop. However, this approach caused performance issue because Angular needed to call the getFormGroup(i)
+            method for each item in the loop, resulting in inefficient change detection.
+        </p>
+        <div id="codeTooltip" class="tooltip">
+            <pre class="tooltip-code"><code>
+// Component TypeScript code
+<span class="function">getFormGroup</span>(<span class="variable">index: number</span>): <span class="keyword">FormGroup</span> &#123;
+<span class="keyword">return</span> <span class="variable">this.items</span>.at(<span class="variable">index</span>) <span class="keyword">as</span> <span class="keyword">FormGroup</span>;
+&#125;
+</code></pre>
+        </div>
+
+        <p><b>Solution:</b> Changed to directly use the variable defined within the ngFor loop as the formGroup, <code>[formGroup]="itemControl"</code>. 
+            This change ensured that each form control was individually bound, 
+            optimizing Angular's change detection and improving overall performance.
+            Additionally, replaced <code>placeholder</code> with <code>mat-label</code> to maintain UI consistency and added <code>mat-error</code> and <code>mat-hint</code> to 
+            guide the user on what to enter.
+        </p>
+        <div class="code-section">
+            <h4>Before:</h4>
+
+            <pre><code>&lt;div *ngFor="let itemControl of items.controls; let i = index" 
+    <span class="highlight"> [formGroup]="getFormGroup(i)"</span> fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center"&gt;
+    &lt;mat-form-field&gt;
+        &lt;input matInput <span class="highlight">placeholder="Checklist Item"</span> formControlName="itemText"&gt;
+    &lt;/mat-form-field&gt;
+&lt;/div&gt;</code></pre>
+
+            <h4>After:</h4>
+
+            <pre><code>&lt;div *ngFor="let itemControl of items.controls; let i = index" 
+    <span class="fixed-highlight">[formGroup]="asFormGroup(itemControl)"</span> fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center"&gt;
+    &lt;mat-form-field&gt;
+        <span class="fixed-highlight">&lt;mat-label&gt;Checklist Item&lt;/mat-label&gt;</span>
+        &lt;input matInput formControlName="itemText"&gt;
+        <span class="fixed-highlight" ngNonBindable>&lt;mat-hint align="end" *ngIf="itemCharCounts$ | async as itemCharCounts"&gt;&#123;&#123; itemCharCounts[i] &#125;&#125; / 200&lt;/mat-hint&gt;
+        &lt;mat-error *ngIf="itemControl.get('itemText')?.hasError('required')"&gt;Required Input or you can delete item&lt;/mat-error&gt;</span>
+    &lt;/mat-form-field&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+    </div> 
+
+<!-- Challenge 2 -->
+<div class="challenge">
+    <h3>Challenge 2: Issue with ID Generation for Checklist Items</h3>
+    <p>
+        There was an issue where the <code>checklistItemId</code> was not correctly generated when saving, resulting in the string "new" remaining as the ID. This caused inconsistencies in data handling during further operations.
+    </p>
+    <p><b>Solution:</b> Changed the ID generation from <code>nameof(checklistItem)</code> to <code>nameof(ChecklistItem)</code> to correctly refer to the type name, ensuring proper ID generation.
+    </p>
+    
+    <!-- Before and After Code -->
+    <div class="code-section">
+        <h4>Before:</h4>
+        <pre><code>checklistItem.ChecklistItemId = await _idGenerator.NextIdAsync(nameof(checklistItem));
+        </code></pre>
+
+        <h4>After:</h4>
+        <pre><code>checklistItem.ChecklistItemId = await _idGenerator.NextIdAsync(nameof(ChecklistItem));
+        </code></pre>
+    </div>
+</div>
+
+<!-- Challenge 3 -->
+<div class="challenge">
+    <h3>Challenge 3: Azure Table Storage Index Design and Query Performance</h3>
+    <p>
+        The initial index design for Azure Table Storage was inefficient, leading to poor query performance and slow data retrieval.
+    </p>
+    <p><b>Solution:</b> Redesigned the primary key and secondary index for the <code>Checklist</code> table, and removed unnecessary indexes for the <code>ChecklistItem</code> table.
+    </p>
+    
+    <!-- Before and After Code -->
+    <div class="code-section">
+        <h4>Before:</h4>
+        <pre><code>ChecklistTableProxy = new CloudTableProxy&lt;Checklist&gt;()
+&#123;
+TableName = nameof(Checklist),
+PartitionKey = (x) =&gt; ByLessonIndexKey,
+RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+SecondaryIndexes = new List&lt;SecondaryIndex&lt;Checklist&gt;&gt;(new SecondaryIndex&lt;Checklist&gt;[]
+&#123;
+    new SecondaryIndex&lt;Checklist&gt;
+    &#123;
+        KeyName = ByLessonIndexKey,
+        PartitionKey = (x) =&gt; x.LessonId.GetSimplePartitionKey(),
+        RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+        &#125;
+&#125;)
+&#125;;
+        </code></pre>
+
+        <h4>After:</h4>
+        <pre><code>private const string PKByIdKey = "all-by-id";
+
+ChecklistTableProxy = new CloudTableProxy&lt;Checklist&gt;()
+&#123;
+TableName = nameof(Checklist),
+PartitionKey = (x) =&gt; PKByIdKey,
+RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+SecondaryIndexes = new List&lt;SecondaryIndex&lt;Checklist&gt;&gt;(new SecondaryIndex&lt;Checklist&gt;[]
+&#123;
+    new SecondaryIndex&lt;Checklist&gt;
+    &#123;
+        KeyName = ByLessonIndexKey,
+        PartitionKey = (x) =&gt; x.LessonId.GetSimplePartitionKey(),
+        RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+    &#125;
+&#125;)
+&#125;;
+        </code></pre>
+    </div>
+</div>
+
+
+    <div class="arrow-container">
+        <a href="#slide6" class="down-arrow" onclick="smoothScroll('#slide6')">&#x25BC;</a>
+    </div>
+</div>

@@ -16,7 +16,7 @@ import { Slide5Component } from './slides/slide5/slide5.component';
     Slide2Component,
     Slide3Component,
     Slide4Component,
-    Slide5Component
+    Slide5Component,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,98 @@
+@import '../../../styles.scss';
+
+#slide4 h2 {
+    margin: 0;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.skill-block {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex; /* Flexbox for centering content */
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100%; /* Allow the block to fill available space */
+    box-sizing: border-box; /* Ensure padding is included in width and height */
+}
+
+@media (max-width: 768px) {
+    .skills-container {
+        grid-template-columns: 1fr; /* Stack columns vertically on smaller screens */
+    }
+    .skill-block {
+        height: auto; /* Allow blocks to adjust height naturally */
+        margin-bottom: 20px; /* Add space between stacked items */
+    }
+}
+
+.skill-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.skill-block h4 {
+    margin-bottom: 10px;
+}
+
+.skill-block p {
+    text-align: left;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.material-row {
+    display: flex; /* Flexboxで横並びに */
+    align-items: center; /* アイコンとテキストを中央揃え */
+    gap: 10px; /* アイコンとテキストの間のスペース */
+    margin-bottom: 10px; /* 下に少しスペース */
+}
+
+.material-row img {
+    width: 80px; /* アイコンのサイズを調整 */
+    height: auto; /* アスペクト比を保つ */
+}
+
+.material-row span {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.icon-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px; 
+    margin-bottom: 10px;
+    align-items: center; 
+    flex-wrap: wrap;
+}
+
+.agile-block {
+    position: relative;
+    overflow: hidden;
+}
+
+.agile-block > .logo-bg-img {
+    position: absolute;
+    bottom: -35px;
+    left: 100px;
+    width: 300px;
+    height: auto;
+    opacity: 0.2;
+}

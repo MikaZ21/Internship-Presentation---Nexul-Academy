@@ -1,1 +1,147 @@
-/* You can add global styles to this file, and also import other style files */
+// Primary Colors
+$primary-color: #007bff; // Main blue color
+$secondary-color: #4a90e2; // Secondary light blue
+$tertiary-color: #4f9d7e; // Accent green
+
+// Dark Colors
+$dark-blue-1: #000537; // Deep dark blue
+$dark-blue-2: #003366; // Dark blue
+$dark-gray: #333; // Dark gray for text
+
+// Light Colors
+$light-gray: #f4f4f4; // Background light gray
+$white: #fff; // Pure white
+$light-blue: #a6d2ea; // Light blue for tooltip, feature hover background
+$light-green: #d9eecd; // Light green for code background
+
+// Accent Colors
+$accent-orange: #f39c12; // Accent orange for headings
+$accent-purple: #d060e2; // Accent purple for feature headers
+$highlight-color: #ff6347; // Highlight color for important text
+$fixed-highlight-color: #2ba284; // Fixed highlight color
+
+// Gradient Colors
+$gradient-start: #000537; // Start color for gradients
+$gradient-mid1: #003366; // Mid color 1 for gradients
+$gradient-mid2: #4a90e2; // Mid color 2 for gradients
+$gradient-mid3: #4f9d7e; // Mid color 3 for gradients
+
+// Miscellaneous Colors
+$error-red: #ff6347; // Error message red
+$placeholder-gray: #f1f1f1; // Placeholder gray background
+$scroll-button-color: #0056b3; // Hover color for scroll button
+$footer-text-color: #fff; // Footer text color
+$tooltip-border-color: #888; // Tooltip border color
+
+
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: $light-gray;
+    color: $dark-gray;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.slide {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 50px auto;
+    background-color: $white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;;
+    }
+    50% {
+        background-position: 100% 50%;
+    } 
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.gurufyre-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: $primary-color;
+    color: $white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.gurufyre-link:hover {
+    background-color: #0056b3;
+}
+
+h1, h2 {
+    color: inherit;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 52px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-family: "Handlee", cursive;
+    font-weight: bold;
+    font-style: normal;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.slide:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.arrow-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    position: relative;
+}
+
+.down-arrow {
+    font-size: 40px;
+    color: $dark-gray;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.down-arrow:hover {
+    color: $primary-color;
+    transform: translateY(10px);
+}
+
+.logo-bg-img {
+    position: absolute;
+    bottom: -40px;
+    left: 280px;
+    width: 300px;
+    height: auto;
+    opacity: 0.2;
+}

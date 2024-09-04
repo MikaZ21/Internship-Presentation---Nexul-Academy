@@ -1,0 +1,78 @@
+@import '../../../styles.scss';
+
+/* slide.5 */
+.challenge {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-left: 5px solid $primary-color;
+    border-radius: 5px;
+}
+
+.challenge p {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.challenge code {
+    background-color: $light-green;
+}
+
+.code-section {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.code-section code {
+    background-color: transparent;
+}
+
+pre {
+    background-color: #272822;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+}
+
+.highlight {
+    color: $highlight-color;
+    font-weight: 500; 
+}
+
+.fixed-highlight {
+    color: $fixed-highlight-color;
+    font-weight: 500; 
+}
+
+.tooltip {
+    display: none; /* デフォルトでは非表示 */
+    position: absolute; /* 絶対位置 */
+    z-index: 10;
+    background-color: #a6d2ea;
+    padding: 10px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+pre.tooltip-code {
+    padding-right: 15px;
+    margin: 0;
+}
+
+.tooltip-code code {
+    background-color: transparent;
+}
+.clickable-code {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
