@@ -1,4 +1,3 @@
-// service.service.ts
 import { Injectable, Renderer2, ElementRef } from '@angular/core';
 
 @Injectable({
