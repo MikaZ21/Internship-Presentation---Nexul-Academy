@@ -1,27 +1,38 @@
 <div class="slide" id="slide5">
     <h2>Challenges and Improvements</h2>
+
+    <!-- Challenge 1 -->
     <div class="challenge">
         <h3>Challenge 1: Using FormArray and Binding Issues</h3>
         <p>When implementing the checklist dialog, there were issues with handling multiple checklist items
-            using <code>FormArray</code>. Initially, <code class="clickable-code" (click)="showTooltip($event)">[formGroup]="getFormGroup(i)"</code> was used to dynamically bind each
+            using <code>FormArray</code>. Initially, <code class="clickable-code" (click)="showTooltip($event, 'codeTooltip')">[formGroup]="getFormGroup(i)"</code> was used to dynamically bind each
             checklist item form in a loop. However, this approach caused performance issue because Angular needed to call the getFormGroup(i)
             method for each item in the loop, resulting in inefficient change detection.
         </p>
         <div id="codeTooltip" class="tooltip">
             <pre class="tooltip-code"><code>
-// Component TypeScript code
+// Before
 <span class="function">getFormGroup</span>(<span class="variable">index: number</span>): <span class="keyword">FormGroup</span> &#123;
-<span class="keyword">return</span> <span class="variable">this.items</span>.at(<span class="variable">index</span>) <span class="keyword">as</span> <span class="keyword">FormGroup</span>;
+    <span class="keyword2">return</span> <span class="variable">this.items</span>.at(<span class="variable">index</span>) <span class="keyword2">as</span> <span class="keyword">FormGroup</span>;
 &#125;
 </code></pre>
         </div>
 
-        <p><b>Solution:</b> Changed to directly use the variable defined within the ngFor loop as the formGroup, <code>[formGroup]="itemControl"</code>. 
+        <p><b>Solution:</b> Changed to directly use the variable defined within the ngFor loop as the formGroup, <code class="clickable-code" (click)="showTooltip($event, 'codeTooltip2')">[formGroup]="itemControl"</code>. 
             This change ensured that each form control was individually bound, 
             optimizing Angular's change detection and improving overall performance.
             Additionally, replaced <code>placeholder</code> with <code>mat-label</code> to maintain UI consistency and added <code>mat-error</code> and <code>mat-hint</code> to 
             guide the user on what to enter.
         </p>
+        <div id="codeTooltip2" class="tooltip">
+            <pre class="tooltip-code"><code>
+// After
+<span class="function">asFormGroup</span>(<span class="variable">control</span> <span class="keyword">AbstractControl</span>): <span class="keyword">FormGroup</span> &#123;
+    <span class="keyword2">return</span> <span class="variable">control</span> <span class="keyword2">as</span> <span class="keyword">FormGroup</span>;
+&#125;
+</code></pre>
+        </div>
+
         <div class="code-section">
             <h4>Before:</h4>
 

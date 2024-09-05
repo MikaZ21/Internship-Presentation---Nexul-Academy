@@ -27,8 +27,8 @@ export class Slide5Component {
     });
   }
 
-  showTooltip(event: MouseEvent) {
-    this.service.showTooltip(event, this.renderer, this.el);  // サービスを呼び出してツールチップを表示
+  showTooltip(event: MouseEvent, tooltipId: string) {
+    this.service.showTooltip(event, tooltipId, this.renderer, this.el);  // サービスを呼び出してツールチップを表示
   }
 
   hideTooltip() {

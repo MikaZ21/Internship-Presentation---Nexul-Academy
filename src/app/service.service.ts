@@ -36,8 +36,8 @@ export class Service {
     return -c / 2 * (t * (t - 2) - 1) + b;
   }
 
-  showTooltip(event: MouseEvent, renderer: Renderer2, el: ElementRef) {
-    const tooltip = el.nativeElement.querySelector('#codeTooltip');
+  showTooltip(event: MouseEvent, tooltipId: string, renderer: Renderer2, el: ElementRef) {
+    const tooltip = el.nativeElement.querySelector(`#${tooltipId}`);
     if (tooltip) {
       const rect = (event.target as HTMLElement).getBoundingClientRect();
       renderer.setStyle(tooltip, 'left', `${rect.left}px`);
@@ -45,12 +45,12 @@ export class Service {
       renderer.setStyle(tooltip, 'display', 'block');
     }
   }
-
+  
   hideTooltip(renderer: Renderer2, el: ElementRef) {
-    const tooltip = el.nativeElement.querySelector('#codeTooltip');
-    if (tooltip) {
+    const tooltips = el.nativeElement.querySelectorAll('.tooltip');
+    tooltips.forEach((tooltip: HTMLElement) => {
       renderer.setStyle(tooltip, 'display', 'none');
-    }
+    });
   }
 
   setupScrollToTopButton(el: ElementRef, renderer: Renderer2) {

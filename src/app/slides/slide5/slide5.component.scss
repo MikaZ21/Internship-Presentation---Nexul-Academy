@@ -14,18 +14,14 @@
     padding-left: 10px;
 }
 
+code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+}
+
+
 .challenge code {
     background-color: $light-green;
-}
-
-.code-section {
-    background-color: #f1f1f1;
-    padding: 15px;
-    border-radius: 5px;
-}
-
-.code-section code {
-    background-color: transparent;
 }
 
 pre {
@@ -36,9 +32,19 @@ pre {
     overflow-x: auto;
 }
 
-code {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 16px;
+pre.tooltip-code {
+    padding-right: 15px;
+    margin: 0;
+}
+
+.code-section {
+    background-color: #f1f1f1;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.code-section code {
+    background-color: transparent;
 }
 
 .highlight {
@@ -48,7 +54,7 @@ code {
 
 .fixed-highlight {
     color: $fixed-highlight-color;
-    font-weight: 500; 
+    font-weight: 600; 
 }
 
 .tooltip {
@@ -63,11 +69,6 @@ code {
     font-size: 14px;
 }
 
-pre.tooltip-code {
-    padding-right: 15px;
-    margin: 0;
-}
-
 .tooltip-code code {
     background-color: transparent;
 }
@@ -76,3 +77,21 @@ pre.tooltip-code {
     cursor: pointer;
     text-decoration: underline;
 }
+
+.function {
+    color: yellow;
+}
+
+.variable {
+    color: turquoise;
+}
+
+.keyword {
+    color: orange;
+}
+
+.keyword2 {
+    color: coral;
+}
+
+
