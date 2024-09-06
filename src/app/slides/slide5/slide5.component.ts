@@ -34,4 +34,8 @@ export class Slide5Component {
   hideTooltip() {
     this.service.hideTooltip(this.renderer, this.el);  // サービスを呼び出してツールチップを非表示
   }
+
+  smoothScroll(target: string) {
+    this.service.smoothScroll(target, this.el);
+  }
 }
