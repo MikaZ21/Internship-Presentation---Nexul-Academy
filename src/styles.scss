@@ -1,3 +1,5 @@
+@import '~highlight.js/styles/a11y-dark.css';
+
 // Primary Colors
 $primary-color: #007bff; // Main blue color
 $secondary-color: #4a90e2; // Secondary light blue
@@ -136,3 +138,24 @@ p {
     height: auto;
     opacity: 0.2;
 }
+
+.code-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    z-index: 10;
+  }
+  
+  .language-name {
+    position: absolute;
+    top: -1.5em;
+    left: 0;
+    background-color: $accent-orange;
+    color: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+ .code-wrapper code.hljs {
+    padding: 2em;
+ }

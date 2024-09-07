@@ -7,7 +7,6 @@
             <img src="assets/images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bg-img">
         </div>
 
-
         <h3>Challenge 1 - Issues with Correctly Creating and Editing Checklist Items</h3>
         <!-- <p><b>Problem:</b>
             When implementing the checklist dialog, there were issues with handling multiple checklist items
@@ -29,7 +28,7 @@
         </div> -->
 
         <p><b>Cause:</b> 
-            The dynamic addition and removal of checklist items using FormArray were not properly handled, 
+            Add and delete of checklist items using FormArray were not properly handled, 
             leading to issues with item validation and data synchronization.
         </p>
         <!-- <p><b>Solution:</b> 
@@ -41,8 +40,9 @@
         </p> -->
         <p><b>Solution:</b> 
             Improved the patchFormWithChecklist method to correctly patch form data on initial load 
-            and added logic to properly update form states when dynamically adding or removing items.
+            and added logic to properly update form states when dynamically adding or deleting items.
         </p>
+        <br>
         <!-- <div id="codeTooltip2" class="tooltip">
             <pre class="tooltip-code"><code>
 // After
@@ -52,243 +52,152 @@
 </code></pre>
         </div> -->
 
-        <pre><code class="language-typescript">
-            patchFormWithChecklist(checklist: ChecklistEditViewModel) &#123;
-                this.checklistForm.patchValue(&#123;
-                    title: checklist.title,
-                    description: checklist.description,
-                &#125;);
-            
-                const items = checklist.items || [];
-                items.forEach((item) => &#123;
-                    this.addChecklistItem(item);  // 既存アイテムをフォームに追加
-                    console.log("Existing checklist item added and marked as touched.");
-                &#125;);
-            
-                if (items.length === 0) &#123;
-                    this.addChecklistItem(undefined);  // 空のリストにデフォルトアイテムを追加
-                &#125;
-            
-                console.log('Form patched with checklist:', this.checklistForm.value);
-            &#125;
-            
-            addChecklistItem(item?: ChecklistItemEditViewModel) &#123;        
-                const checklistItem = this.fb.group(&#123;
-                    checklistItemId: [item?.checklistItemId || ''],
-                    sequence: [item?.sequence || 0],
-                    itemText: [item?.itemText || '', [Validators.required, Validators.maxLength(200)]]
-                &#125;);
-            
-                this.items.push(checklistItem);
-                this.itemAdded$.next(this.itemAdded$.value + 1);
-            
-                console.log('Added checklist item field:', checklistItem.value);
-                console.log('Form after adding item:', this.checklistForm.value);
-                this.logFormStatus();
-            &#125;            
-        </code></pre>
-
-<!-- <pre><code class="language-typescript">
-    patchFormWithChecklist(checklist: ChecklistEditViewModel) &#123;
-        this.checklistForm.patchValue(&#123;
-            title: checklist.title,
-            description: checklist.description,
-            &#125;);
-    
-        const items = checklist.items || [];
-        items.forEach((item) => &#123;
-            this.addChecklistItem(item);  // 既存アイテムをフォームに追加
-            console.log("Existing checklist item added and marked as touched.");
-            &#125;);
-    
-        if (items.length === 0) &#123;
-            this.addChecklistItem(undefined);  // 空のリストにデフォルトアイテムを追加
-            &#125;
-    
-        console.log('Form patched with checklist:', this.checklistForm.value);
-        &#125;
-    
-    addChecklistItem(item?: ChecklistItemEditViewModel) &#123;        
-        const checklistItem = this.fb.group(&#123;
-            checklistItemId: [item?.checklistItemId || ''],
-            sequence: [item?.sequence || 0],
-            itemText: [item?.itemText || '', [Validators.required, Validators.maxLength(200)]]
-            &#125;);
-    
-        this.items.push(checklistItem);
-        this.itemAdded$.next(this.itemAdded$.value + 1);
-    
-        console.log('Added checklist item field:', checklistItem.value);
-        console.log('Form after adding item:', this.checklistForm.value);
-        this.logFormStatus();
-        &#125;
-</code></pre> -->
-
-        
-        <!-- <div class="code-section">
-            <h4>Before:</h4>
-
-            <pre><code>&lt;div *ngFor="let itemControl of items.controls; let i = index" 
-    <span class="highlight"> [formGroup]="getFormGroup(i)"</span> fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center"&gt;
-    &lt;mat-form-field&gt;
-        &lt;input matInput <span class="highlight">placeholder="Checklist Item"</span> formControlName="itemText"&gt;
-    &lt;/mat-form-field&gt;
-&lt;/div&gt;</code></pre>
-
-            <h4>After:</h4>
-
-            <pre><code>&lt;div *ngFor="let itemControl of items.controls; let i = index" 
-    <span class="fixed-highlight">[formGroup]="asFormGroup(itemControl)"</span> fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center"&gt;
-    &lt;mat-form-field&gt;
-        <span class="fixed-highlight">&lt;mat-label&gt;Checklist Item&lt;/mat-label&gt;</span>
-        &lt;input matInput formControlName="itemText"&gt;
-        <span class="fixed-highlight" ngNonBindable>&lt;mat-hint align="end" *ngIf="itemCharCounts$ | async as itemCharCounts"&gt;&#123;&#123; itemCharCounts[i] &#125;&#125; / 200&lt;/mat-hint&gt;
-        &lt;mat-error *ngIf="itemControl.get('itemText')?.hasError('required')"&gt;Required Input or you can delete item&lt;/mat-error&gt;</span>
-    &lt;/mat-form-field&gt;
-&lt;/div&gt;</code></pre>
-        </div> -->
-    </div> 
-
-<!-- Challenge 2 -->
-<div class="challenge">
-    <div class="logo-container">
-        <img src="assets/images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bg-img">
+        <div class="code-wrapper">
+            <div class="language-name">typescript</div>
+            <pre><code [highlight]="codeSnippet1">
+            </code></pre>
+        </div>
     </div>
 
-    <h3>Challenge 2 - ID Generation and Data Synchronization Issues</h3>
-    <p><b>Problem:</b>
-        When adding and editing checklist items, the IDs needed to be consistently generated and synchronized between the 
-        frontend and backend. Initially, temporary ID's like 'new' were used, but issues arose when these were not properly replaced with real 
-        IDs generated by the backend, causing data inconsistencies.
-    </p>
-    <p><b>Solution:</b> 
-        To solve these issues, several improvements were made across both the backend and frontend:
-    </p>
-    <ol>
-        <li><b>Proper ID Generation and Synchronization Logic:</b>
-            <ul>
-                <li>The backend was adjusted to ensure that any checklist item sent with the ID of <code>'new'</code> or null was correctly handled. 
-                    The generated unique ID was then explicitly sent back to the frontend, which had to update its model state immediately.</li>
+    <!-- Challenge 2 -->
+    <div class="challenge">
+        <div class="logo-container">
+            <img src="assets/images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bg-img">
+        </div>
+
+        <h3>Challenge 2 - ID Generation and Data Synchronization Issues</h3>
+        <p><b>Problem:</b>
+            When adding and editing checklist items, the IDs needed to be consistently generated and synchronized between the 
+            frontend and backend. Initially, temporary ID's like 'new' were used, but issues arose when these were not properly replaced with real 
+            IDs generated by the backend, causing data inconsistencies.
+        </p>
+        <p><b>Solution:</b> 
+            To solve these issues, several improvements were made across both the backend and frontend:
+        </p>
+        <ol>
+            <li><b>Proper ID Generation and Synchronization Logic:</b>
+                <ul>
+                    <li>The backend was adjusted to ensure that any checklist item sent with the ID of <code>'new'</code> or null was correctly handled. 
+                        The generated unique ID was then explicitly sent back to the frontend, which had to update its model state immediately.</li>
+                        <br>
+                        <div class="code-section">
+                            <h4>Backend Code Changes:</h4>
+                            <pre><code>
+        // ChecklistController.cs - Revised InsertChecklistAsync Method
+        public async Task&lt;ChecklistEditViewModel&gt; InsertChecklistAsync(ChecklistEditViewModel model) &#123;
+                foreach (var item in model.Items) &#123;
+                    // Only generate a new ID if it is 'new' or empty
+                    if (string.IsNullOrEmpty(item.ChecklistItemId) || item.ChecklistItemId == "new") &#123;
+                        item.ChecklistItemId = await _idGenerator.NextIdAsync(nameof(ChecklistItem));
+                    &#125;
+                    // Save the item to the database
+                    await _azureChecklistData.InsertAsync(item);
+                &#125;
+                // Ensure to return the entire model with generated IDs back to the frontend
+                return model;
+        &#125;</code></pre>
+                        </div>
+                        <br>
+                        <li><b>Ensure All IDs are Properly Returned:</b>
+                        After saving each checklist item, the model is returned with the updated IDs, insuring that the frontend has the most accurate data.</li>
+                </ul>
+            </li>
+            <br>
+            <li><b>Frontend Adjustments for Accurate Data Handling:</b>
+                <ul>
+                <li>The frontend had to handle the new IDs returned from the backend correctly. Instead of keeping a static <code>'new'</code> placeholder, 
+                    the logic was implemented to patch the form with the newly generated ID immediately.</li>
                     <br>
                     <div class="code-section">
-                        <h4>Backend Code Changes:</h4>
+                        <h4>Frontend Code Changes:</h4>
                         <pre><code>
-    // ChecklistController.cs - Revised InsertChecklistAsync Method
-    public async Task&lt;ChecklistEditViewModel&gt; InsertChecklistAsync(ChecklistEditViewModel model) &#123;
-            foreach (var item in model.Items) &#123;
-                // Only generate a new ID if it is 'new' or empty
-                if (string.IsNullOrEmpty(item.ChecklistItemId) || item.ChecklistItemId == "new") &#123;
-                    item.ChecklistItemId = await _idGenerator.NextIdAsync(nameof(ChecklistItem));
-                &#125;
-                // Save the item to the database
-                await _azureChecklistData.InsertAsync(item);
-            &#125;
-            // Ensure to return the entire model with generated IDs back to the frontend
-            return model;
-    &#125;</code></pre>
+        // checklist-dialog.component.ts
+        saveChecklist() &#123;
+            this.checklistService.saveChecklist(this.checklistForm.value).subscribe((response: ChecklistEditViewModel) => &#123;
+                // Patch the form with the updated checklist items that include new IDs from the backend
+                this.checklistForm.patchValue(response);
+                this.updateChecklistItems(response.items);
+            &#125;, error => &#123;
+                console.error('Failed to save checklist:', error);
+            &#125;);
+        &#125;
+        
+        updateChecklistItems(items: ChecklistItemEdit[]) &#123;
+            // Update local formArray with returned items from the backend, ensuring all IDs are correct
+            this.items.clear();
+            items.forEach(item => &#123;
+                this.items.push(this.createChecklistItemFormGroup(item));
+            &#125;);
+        &#125;</code></pre>
                     </div>
                     <br>
-                    <li><b>Ensure All IDs are Properly Returned:</b>
-                    After saving each checklist item, the model is returned with the updated IDs, insuring that the frontend has the most accurate data.</li>
-            </ul>
-        </li>
-        <br>
-        <li><b>Frontend Adjustments for Accurate Data Handling:</b>
-            <ul>
-            <li>The frontend had to handle the new IDs returned from the backend correctly. Instead of keeping a static <code>'new'</code> placeholder, 
-                the logic was implemented to patch the form with the newly generated ID immediately.</li>
-                <br>
-                <div class="code-section">
-                    <h4>Frontend Code Changes:</h4>
-                    <pre><code>
-    // checklist-dialog.component.ts
-    saveChecklist() &#123;
-        this.checklistService.saveChecklist(this.checklistForm.value).subscribe((response: ChecklistEditViewModel) => &#123;
-            // Patch the form with the updated checklist items that include new IDs from the backend
-            this.checklistForm.patchValue(response);
-            this.updateChecklistItems(response.items);
-        &#125;, error => &#123;
-            console.error('Failed to save checklist:', error);
-        &#125;);
-    &#125;
+                    <li><b>Use patchValue and Update Methods: </b>
+                        The <code>patchValue()</code> method ensures that any missing IDs are filled in with what the backend has generated. 
+                        The <code>updateChecklistItems()</code> method clears the current form controls and repopulates them with the updated data.            </ul>
+            </li>
+            <br>
+            <li><b>Efficient Data Binding and Change Detection in Angular:</b>
+
+            </li>
+        </ol>
+
     
-    updateChecklistItems(items: ChecklistItemEdit[]) &#123;
-        // Update local formArray with returned items from the backend, ensuring all IDs are correct
-        this.items.clear();
-        items.forEach(item => &#123;
-            this.items.push(this.createChecklistItemFormGroup(item));
-        &#125;);
-    &#125;</code></pre>
-                </div>
-                <br>
-                <li><b>Use patchValue and Update Methods: </b>
-                    The <code>patchValue()</code> method ensures that any missing IDs are filled in with what the backend has generated. 
-                    The <code>updateChecklistItems()</code> method clears the current form controls and repopulates them with the updated data.            </ul>
-        </li>
-        <br>
-        <li><b>Efficient Data Binding and Change Detection in Angular:</b>
-
-        </li>
-    </ol>
-
- 
-</div>
-
-<!-- Challenge 3 -->
-<div class="challenge">
-    <div class="logo-container">
-        <img src="assets/images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bg-img">
     </div>
 
-    <h3>Challenge 3: Azure Table Storage Index Design and Query Performance</h3>
-    <p>
-        The initial index design for Azure Table Storage was inefficient, leading to poor query performance and slow data retrieval.
-    </p>
-    <p><b>Solution:</b> Redesigned the primary key and secondary index for the <code>Checklist</code> table, and removed unnecessary indexes for the <code>ChecklistItem</code> table.
-    </p>
-    
-    <!-- Before and After Code -->
-    <div class="code-section">
-        <h4>Before:</h4>
-        <pre><code>ChecklistTableProxy = new CloudTableProxy&lt;Checklist&gt;()
-&#123;
-TableName = nameof(Checklist),
-PartitionKey = (x) =&gt; ByLessonIndexKey,
-RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
-SecondaryIndexes = new List&lt;SecondaryIndex&lt;Checklist&gt;&gt;(new SecondaryIndex&lt;Checklist&gt;[]
-&#123;
-    new SecondaryIndex&lt;Checklist&gt;
+    <!-- Challenge 3 -->
+    <div class="challenge">
+        <div class="logo-container">
+            <img src="assets/images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bg-img">
+        </div>
+
+        <h3>Challenge 3: Azure Table Storage Index Design and Query Performance</h3>
+        <p>
+            The initial index design for Azure Table Storage was inefficient, leading to poor query performance and slow data retrieval.
+        </p>
+        <p><b>Solution:</b> Redesigned the primary key and secondary index for the <code>Checklist</code> table, and removed unnecessary indexes for the <code>ChecklistItem</code> table.
+        </p>
+        
+        <!-- Before and After Code -->
+        <div class="code-section">
+            <h4>Before:</h4>
+            <pre><code>ChecklistTableProxy = new CloudTableProxy&lt;Checklist&gt;()
     &#123;
-        KeyName = ByLessonIndexKey,
-        PartitionKey = (x) =&gt; x.LessonId.GetSimplePartitionKey(),
-        RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+    TableName = nameof(Checklist),
+    PartitionKey = (x) =&gt; ByLessonIndexKey,
+    RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+    SecondaryIndexes = new List&lt;SecondaryIndex&lt;Checklist&gt;&gt;(new SecondaryIndex&lt;Checklist&gt;[]
+    &#123;
+        new SecondaryIndex&lt;Checklist&gt;
+        &#123;
+            KeyName = ByLessonIndexKey,
+            PartitionKey = (x) =&gt; x.LessonId.GetSimplePartitionKey(),
+            RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+            &#125;
+    &#125;)
+    &#125;;
+            </code></pre>
+
+            <h4>After:</h4>
+            <pre><code>private const string PKByIdKey = "all-by-id";
+
+    ChecklistTableProxy = new CloudTableProxy&lt;Checklist&gt;()
+    &#123;
+    TableName = nameof(Checklist),
+    PartitionKey = (x) =&gt; PKByIdKey,
+    RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
+    SecondaryIndexes = new List&lt;SecondaryIndex&lt;Checklist&gt;&gt;(new SecondaryIndex&lt;Checklist&gt;[]
+    &#123;
+        new SecondaryIndex&lt;Checklist&gt;
+        &#123;
+            KeyName = ByLessonIndexKey,
+            PartitionKey = (x) =&gt; x.LessonId.GetSimplePartitionKey(),
+            RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
         &#125;
-&#125;)
-&#125;;
-        </code></pre>
-
-        <h4>After:</h4>
-        <pre><code>private const string PKByIdKey = "all-by-id";
-
-ChecklistTableProxy = new CloudTableProxy&lt;Checklist&gt;()
-&#123;
-TableName = nameof(Checklist),
-PartitionKey = (x) =&gt; PKByIdKey,
-RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
-SecondaryIndexes = new List&lt;SecondaryIndex&lt;Checklist&gt;&gt;(new SecondaryIndex&lt;Checklist&gt;[]
-&#123;
-    new SecondaryIndex&lt;Checklist&gt;
-    &#123;
-        KeyName = ByLessonIndexKey,
-        PartitionKey = (x) =&gt; x.LessonId.GetSimplePartitionKey(),
-        RowKey = (x) =&gt; x.ChecklistId.GetSimpleRowKey(),
-    &#125;
-&#125;)
-&#125;;
-        </code></pre>
+    &#125;)
+    &#125;;
+            </code></pre>
+        </div>
     </div>
-</div>
-
 
     <div class="arrow-container">
         <a href="#slide6" class="down-arrow" (click)="smoothScroll('#slide6')">&#x25BC;</a>
