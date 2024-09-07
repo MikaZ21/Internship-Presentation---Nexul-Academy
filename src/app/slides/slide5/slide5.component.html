@@ -7,39 +7,125 @@
             <img src="assets/images/nexul_academy_icon_logo_300dpi-circle.png" alt="Nexul Academy Logo" class="logo-bg-img">
         </div>
 
-        <h3>Challenge 1 - Using FormArray and Binding Issues</h3>
-        <p><b>Problem:</b>
+
+        <h3>Challenge 1 - Issues with Correctly Creating and Editing Checklist Items</h3>
+        <!-- <p><b>Problem:</b>
             When implementing the checklist dialog, there were issues with handling multiple checklist items
             using <code>FormArray</code>. Initially, <code class="clickable-code" (click)="showTooltip($event, 'codeTooltip')">[formGroup]="getFormGroup(i)"</code> was used to dynamically bind each
             checklist item form in a loop. However, this approach caused performance issue because Angular needed to call the getFormGroup(i)
             method for each item in the loop, resulting in inefficient change detection.
+        </p> -->
+        <p><b>Problem:</b>
+            When creating or editing items in the checklist dialog, 
+            data was not being saved correctly or reflected in the form. 
         </p>
-        <div id="codeTooltip" class="tooltip">
+        <!-- <div id="codeTooltip" class="tooltip">
             <pre class="tooltip-code"><code>
 // Before
 <span class="function">getFormGroup</span>(<span class="variable">index: number</span>): <span class="keyword">FormGroup</span> &#123;
     <span class="keyword2">return</span> <span class="variable">this.items</span>.at(<span class="variable">index</span>) <span class="keyword2">as</span> <span class="keyword">FormGroup</span>;
 &#125;
 </code></pre>
-        </div>
+        </div> -->
 
-        <p><b>Solution:</b> 
+        <p><b>Cause:</b> 
+            The dynamic addition and removal of checklist items using FormArray were not properly handled, 
+            leading to issues with item validation and data synchronization.
+        </p>
+        <!-- <p><b>Solution:</b> 
             Changed to directly use the variable defined within the ngFor loop as the formGroup, <code class="clickable-code" (click)="showTooltip($event, 'codeTooltip2')">[formGroup]="itemControl"</code>. 
             This change ensured that each form control was individually bound, 
             optimizing Angular's change detection and improving overall performance.
             Additionally, replaced <code>placeholder</code> with <code>mat-label</code> to maintain UI consistency and added <code>mat-error</code> and <code>mat-hint</code> to 
             guide the user on what to enter.
+        </p> -->
+        <p><b>Solution:</b> 
+            Improved the patchFormWithChecklist method to correctly patch form data on initial load 
+            and added logic to properly update form states when dynamically adding or removing items.
         </p>
-        <div id="codeTooltip2" class="tooltip">
+        <!-- <div id="codeTooltip2" class="tooltip">
             <pre class="tooltip-code"><code>
 // After
 <span class="function">asFormGroup</span>(<span class="variable">control</span> <span class="keyword">AbstractControl</span>): <span class="keyword">FormGroup</span> &#123;
     <span class="keyword2">return</span> <span class="variable">control</span> <span class="keyword2">as</span> <span class="keyword">FormGroup</span>;
 &#125;
 </code></pre>
-        </div>
+        </div> -->
 
-        <div class="code-section">
+        <pre><code class="language-typescript">
+            patchFormWithChecklist(checklist: ChecklistEditViewModel) &#123;
+                this.checklistForm.patchValue(&#123;
+                    title: checklist.title,
+                    description: checklist.description,
+                &#125;);
+            
+                const items = checklist.items || [];
+                items.forEach((item) => &#123;
+                    this.addChecklistItem(item);  // 既存アイテムをフォームに追加
+                    console.log("Existing checklist item added and marked as touched.");
+                &#125;);
+            
+                if (items.length === 0) &#123;
+                    this.addChecklistItem(undefined);  // 空のリストにデフォルトアイテムを追加
+                &#125;
+            
+                console.log('Form patched with checklist:', this.checklistForm.value);
+            &#125;
+            
+            addChecklistItem(item?: ChecklistItemEditViewModel) &#123;        
+                const checklistItem = this.fb.group(&#123;
+                    checklistItemId: [item?.checklistItemId || ''],
+                    sequence: [item?.sequence || 0],
+                    itemText: [item?.itemText || '', [Validators.required, Validators.maxLength(200)]]
+                &#125;);
+            
+                this.items.push(checklistItem);
+                this.itemAdded$.next(this.itemAdded$.value + 1);
+            
+                console.log('Added checklist item field:', checklistItem.value);
+                console.log('Form after adding item:', this.checklistForm.value);
+                this.logFormStatus();
+            &#125;            
+        </code></pre>
+
+<!-- <pre><code class="language-typescript">
+    patchFormWithChecklist(checklist: ChecklistEditViewModel) &#123;
+        this.checklistForm.patchValue(&#123;
+            title: checklist.title,
+            description: checklist.description,
+            &#125;);
+    
+        const items = checklist.items || [];
+        items.forEach((item) => &#123;
+            this.addChecklistItem(item);  // 既存アイテムをフォームに追加
+            console.log("Existing checklist item added and marked as touched.");
+            &#125;);
+    
+        if (items.length === 0) &#123;
+            this.addChecklistItem(undefined);  // 空のリストにデフォルトアイテムを追加
+            &#125;
+    
+        console.log('Form patched with checklist:', this.checklistForm.value);
+        &#125;
+    
+    addChecklistItem(item?: ChecklistItemEditViewModel) &#123;        
+        const checklistItem = this.fb.group(&#123;
+            checklistItemId: [item?.checklistItemId || ''],
+            sequence: [item?.sequence || 0],
+            itemText: [item?.itemText || '', [Validators.required, Validators.maxLength(200)]]
+            &#125;);
+    
+        this.items.push(checklistItem);
+        this.itemAdded$.next(this.itemAdded$.value + 1);
+    
+        console.log('Added checklist item field:', checklistItem.value);
+        console.log('Form after adding item:', this.checklistForm.value);
+        this.logFormStatus();
+        &#125;
+</code></pre> -->
+
+        
+        <!-- <div class="code-section">
             <h4>Before:</h4>
 
             <pre><code>&lt;div *ngFor="let itemControl of items.controls; let i = index" 
@@ -60,7 +146,7 @@
         &lt;mat-error *ngIf="itemControl.get('itemText')?.hasError('required')"&gt;Required Input or you can delete item&lt;/mat-error&gt;</span>
     &lt;/mat-form-field&gt;
 &lt;/div&gt;</code></pre>
-        </div>
+        </div> -->
     </div> 
 
 <!-- Challenge 2 -->
