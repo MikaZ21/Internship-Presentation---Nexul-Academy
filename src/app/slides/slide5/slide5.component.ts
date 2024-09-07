@@ -39,38 +39,55 @@ export class Slide5Component {
   
 
   codeSnippet1 = `
-  patchFormWithChecklist(checklist: ChecklistEditViewModel) {
-    this.checklistForm.patchValue({
-        title: checklist.title,
-        description: checklist.description,
-    });
+    // チェックリストデータをフォームにパッチするメソッド
+    patchFormWithChecklist(checklist: ChecklistEditViewModel) {
 
-    const items = checklist.items || [];
-    items.forEach((item) => {
-        this.addChecklistItem(item);  // 既存アイテムをフォームに追加
-        console.log("Existing checklist item added and marked as touched.");
-    });
+        // フォームのタイトルと説明フィールドを、チェックリストのデータで更新
+        this.checklistForm.patchValue({
+            title: checklist.title,
+            description: checklist.description,
+        });
 
-    if (items.length === 0) {
-        this.addChecklistItem(undefined);  // 空のリストにデフォルトアイテムを追加
+        // チェックリストのアイテムを取得（存在しない場合は空のリストにする）
+        const items = checklist.items || [];
+
+        // 各アイテムをフォームに追加
+        items.forEach((item) => {
+            this.addChecklistItem(item);  // 既存アイテムをフォームに追加する関数の呼び出し
+            console.log("Existing checklist item has been added, and the form has been updated.");
+        });
+
+        // アイテムが一つもない場合、デフォルトのアイテムをフォームに追加
+        if (items.length === 0) {
+            this.addChecklistItem(undefined);  // リストに空のデフォルトアイテムを追加
+        }
+
+        // フォームがパッチされたことをコンソールに出力
+        console.log('Form patched with checklist:', this.checklistForm.value);
     }
 
-    console.log('Form patched with checklist:', this.checklistForm.value);
-}
+    // 新しいチェックリストアイテムをフォームに追加するメソッド
+    addChecklistItem(item?: ChecklistItemEditViewModel) {  
 
-addChecklistItem(item?: ChecklistItemEditViewModel) {        
-    const checklistItem = this.fb.group({
-        checklistItemId: [item?.checklistItemId || ''],
-        sequence: [item?.sequence || 0],
-        itemText: [item?.itemText || '', [Validators.required, Validators.maxLength(200)]]
-    });
+        // 新しいアイテムのフォームグループを作成
+        const checklistItem = this.fb.group({
+            checklistItemId: [item?.checklistItemId || ''],  // アイテムID(新規の場合は空)
+            sequence: [item?.sequence || 0],  // アイテムの順序(新規の場合は0)
+            itemText: [item?.itemText || '', [Validators.required, Validators.maxLength(200)]] // アイテムのテキスト（バリデーション付き）
+        });
 
-    this.items.push(checklistItem);
-    this.itemAdded$.next(this.itemAdded$.value + 1);
+        // 作成したフォームグループをアイテムリストに追加
+        this.items.push(checklistItem);
 
-    console.log('Added checklist item field:', checklistItem.value);
-    console.log('Form after adding item:', this.checklistForm.value);
-    this.logFormStatus();
-}
-`;
+        // アイテムが追加されたことを通知するためのSubjectの値を更新
+        this.itemAdded$.next(this.itemAdded$.value + 1);
+
+        // 新しく追加されたアイテムと現在のフォームの状態をコンソールに出力
+        console.log('Added checklist item field:', checklistItem.value);
+        console.log('Form after adding item:', this.checklistForm.value);
+
+        // 現在のフォームステータスをログ出力
+        this.logFormStatus();
+    }
+  `;
 }

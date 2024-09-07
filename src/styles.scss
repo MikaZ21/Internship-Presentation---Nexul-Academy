@@ -159,3 +159,11 @@ p {
  .code-wrapper code.hljs {
     padding: 2em;
  }
+
+ code.highlight-code {
+    font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 16px;
+    background-color: $light-green;
+    padding-left: 3px;
+    padding-right: 3px;
+}

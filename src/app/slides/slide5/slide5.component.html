@@ -28,7 +28,7 @@
         </div> -->
 
         <p><b>Cause:</b> 
-            Add and delete of checklist items using FormArray were not properly handled, 
+            The add and delete operations of checklist items using <code class="highlight-code">FormArray</code> were not properly handled, 
             leading to issues with item validation and data synchronization.
         </p>
         <!-- <p><b>Solution:</b> 
@@ -39,8 +39,8 @@
             guide the user on what to enter.
         </p> -->
         <p><b>Solution:</b> 
-            Improved the patchFormWithChecklist method to correctly patch form data on initial load 
-            and added logic to properly update form states when dynamically adding or deleting items.
+            Improved the <code class="highlight-code">patchFormWithChecklist()</code> method to correctly initialize and patch form data.
+            Added logic to dynamically update form state when items are added or deleted.
         </p>
         <br>
         <!-- <div id="codeTooltip2" class="tooltip">
