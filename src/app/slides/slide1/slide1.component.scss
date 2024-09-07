@@ -15,7 +15,7 @@
   
     background-size: 300% 300%;
     animation: gradientBackground 15s ease infinite; // Uses global keyframes from styles.scss
-    color: $white; // Use the color variable defined in the global file
+    color: $white;
     padding-top: 150px; 
     height: 50vh; 
     text-align: center;
@@ -24,7 +24,7 @@
 }
 
 #slide1 p {
-    color: #852694;
+    color: #8e00a3;
     font-weight: 400;
 }
 

@@ -7,16 +7,18 @@
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 10px;
+    gap: 20px;
     padding: 0 50px;
 }
 
 .feature-item {
     padding: 20px;
     color: $dark-gray;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .feature-item:hover {
@@ -32,7 +34,7 @@
 
 .feature-objective h3,
 .feature-description h3,
-.feature-uxui h3 {
+.feature-development-process h3 {
     padding: 10px;
     padding-left: 30px;
     border-radius: 0 0 10px 10px;
@@ -41,21 +43,44 @@
 }
 
 .feature-objective {
-    grid-area: 1 / 1;
     background-color: $light-green;
 }
 
 .feature-description {
-    grid-area: 1 / 2;
     background-color: #eed8b5;
 }
 
-.feature-uxui {
-    grid-area: 2 / 2;
+.feature-development-process {
     background-color: #f2ddf6;
-    position: relative;
-    padding-bottom: 100px;
-    overflow: hidden;
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    padding: 20px; 
+}
+
+.logo-container {
+    width: 100%;
+    overflow: hidden; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-top: auto; 
+    padding: 0; 
+}
+
+
+img.logo-bg-img {
+    position: relative; 
+    bottom: -30px; 
+    left: 35%; 
+    transform: translateX(-50%); 
+    width: 300px; 
+    height: auto;
+    opacity: 0.2; 
+    pointer-events: none;
+    z-index: 0;
 }
 
 .feature-objective h3 {
@@ -66,12 +91,11 @@
     background-color: $accent-orange;
 }
 
-.feature-uxui h3 {
+.feature-development-process h3 {
     background-color: $accent-purple;
 }
 
 .featur-demo-container {
-    grid-area: 2 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,4 +104,16 @@
 
 .feature-demo {
     max-width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .feature-grid {
+        grid-template-columns: 1fr; /* Switch to single-column layout */
+        padding: 0 20px; /* Reduce padding for smaller screens */
+    }
+
+    .feature-item {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
 }
