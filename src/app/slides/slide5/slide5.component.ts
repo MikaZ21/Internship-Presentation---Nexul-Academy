@@ -90,4 +90,61 @@ export class Slide5Component {
         this.logFormStatus();
     }
   `;
+
+  codeSnippet2 = `
+      // アイテムの追加/削除を監視するためのBehaviorSubject
+      this.itemAdded$ = new BehaviorSubject<number>(0);
+
+      // フォームの値の変更をリアルタイムで監視し、アイテムの文字数を計算
+      this.itemCharCounts$ = combineLatest([
+          this.checklistForm.valueChanges.pipe(
+              startWith({...this.checklistForm.value}), // 初期フォームの値でスタート
+              distinctUntilChanged(), // フォームの値が変更された場合のみトリガー
+          ), 
+          this.itemAdded$ // アイテムの追加/削除のトリガー
+      ]).pipe(
+          map(([_formVal, _counter]) => { // フォームの現在の値とアイテム追加カウンターを監視
+              let items = this.checklistForm.value.items as {itemText: string}[];
+              return items.map(item => !item.itemText ? 0 : item.itemText.length); // 各アイテムの文字数を返す
+          }),
+      );
+  `;
+
+  codeSnippet3 = `
+      // レッスン変更時にデータの再取得をトリガー
+      private _lesson: Lesson | undefined | null;
+
+      get lesson(): Lesson | undefined | null {
+        return this._lesson;
+      }
+
+      @Input({required: true})
+      set lesson(item: Lesson | undefined | null) {
+        if (item) {
+          this._lesson = item;
+          // reload$を更新してコンポーネントのリフレッシュをトリガー
+          this.reload$.next(this.reload$.value + 1);  
+        }
+      }
+  `;
+
+  codeSnippet4 = `
+      this.page$ = combineLatest([this.pageId$, this.userIsEditorPlus$, this.reload$]).pipe(
+      tap(([_pageId, _isEditor, _]) => this.pageLoading$.next(true)),  // データのロードを開始
+      switchMap(([pageId, isEditor, _]) => {
+        return !!pageId && pageId.match(/tpt/i)
+          ? this.pageSvc.getTemplate(pageId)  // テンプレートを取得
+          : this.pageSvc.getSingle(isEditor, pageId);  // 通常のページデータを取得
+      }),
+      shareReplay(),  // データをキャッシュして再利用
+      tap((page) => {
+        let pc = (page as PageContentViewModel);
+        if (!!pc.topicPageId) {
+          this.designSvc.beginDesignPage(pc);  // デザインページを開始
+        }
+        this.pageLoading$.next(false);  // データのロードが完了
+      }),
+      shareReplay(),
+    );
+  `;
 }
