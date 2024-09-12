@@ -138,8 +138,40 @@ pre.tooltip-code {
   
   .card-title {
     margin: 0;
-    font-size: 18px;
+    font-size: 20px;
     color: $dark-purple;
     font-weight: bold;
     padding-top: 15px;
+  }
+  
+  /* メディアクエリでレスポンシブ対応 */
+  @media (max-width: 768px) {
+    .solution-approaches {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .approach-card {
+      flex: 1 1 100%; /* フレックスボックスでのカードサイズ調整 */
+      max-width: 100%; /* 最大幅を100%に設定 */
+      margin: 10px 0; /* マージンを調整 */
+    }
+  
+    .card-header {
+      flex-direction: column; /* 小さい画面では縦並びに */
+      align-items: center; /* アイコンとタイトルを中央揃えに */
+    }
+  
+    .card-icon {
+      margin-bottom: 10px; /* アイコンの下にスペースを追加 */
+      margin-right: 0; /* 余計な右マージンを削除 */
+    }
+  
+    .card-title {
+      text-align: center; /* タイトルを中央寄せに */
+    }
+
+    p {
+        text-align: left;
+    }
   }

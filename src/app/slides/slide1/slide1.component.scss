@@ -1,38 +1,101 @@
 @import '../../../styles.scss';
 
+// #slide1 {
+//     margin: 0;
+//     max-width: none;
+//     background: linear-gradient(
+//         -10deg, 
+//         $gradient-start, 
+//         $gradient-mid1, 
+//         $gradient-mid2, 
+//         $gradient-mid3, 
+//         $gradient-mid1, 
+//         $gradient-start
+//     );
+  
+//     background-size: 300% 300%;
+//     animation: gradientBackground 15s ease infinite; // Uses global keyframes from styles.scss
+//     color: $white;
+//     padding-top: 150px; 
+//     height: 50vh; 
+//     text-align: center;
+//     border-radius: 0;
+//     box-shadow: none;
+// }
+
+// #slide1 p {
+//     color: $dark-purple;
+//     font-weight: 400;
+// }
+
+// .logo {
+//   position: absolute;
+//   top: 20px;
+//   left: 20px;
+//   width: 80px;
+//   height: 80px;
+//   cursor: pointer;
+// }
+
 #slide1 {
     margin: 0;
     max-width: none;
     background: linear-gradient(
-        -10deg, 
-        $gradient-start, 
-        $gradient-mid1, 
-        $gradient-mid2, 
-        $gradient-mid3, 
-        $gradient-mid1, 
-        $gradient-start
+      -10deg,
+      $gradient-start,
+      $gradient-mid1,
+      $gradient-mid2,
+      $gradient-mid3,
+      $gradient-mid1,
+      $gradient-start
     );
-  
+    
     background-size: 300% 300%;
     animation: gradientBackground 15s ease infinite; // Uses global keyframes from styles.scss
     color: $white;
-    padding-top: 150px; 
-    height: 50vh; 
+    padding: 50px 20px; /* パディングを調整 */
+    min-height: 100vh; /* コンテンツの高さに応じて調整 */
     text-align: center;
     border-radius: 0;
     box-shadow: none;
-}
-
-#slide1 p {
+    box-sizing: border-box; /* ボックスサイズを調整 */
+    display: flex;
+    flex-direction: column; /* コンテンツを縦に並べる */
+    align-items: center; /* 中央揃え */
+    justify-content: center; /* 中央揃え */
+  }
+  
+  #slide1 h1, #slide1 h2, #slide1 p {
+    margin: 10px 0; /* 各要素のマージンを調整 */
+  }
+  
+  #slide1 p {
     color: $dark-purple;
     font-weight: 400;
-}
-
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 80px;
-  height: 80px;
-  cursor: pointer;
-}
+  }
+  
+  .logo {
+    width: 100px; /* レスポンシブ対応でサイズ調整 */
+    height: auto;
+    margin-bottom: 20px; /* 下にスペースを追加 */
+    cursor: pointer;
+  }
+  
+  /* メディアクエリでレスポンシブ対応 */
+  @media (max-width: 768px) {
+    #slide1 {
+      padding: 30px 10px;
+    }
+    
+    #slide1 h1 {
+      font-size: 2.5rem;
+    }
+    
+    #slide1 h2 {
+      font-size: 1.7rem;
+    }
+    
+    #slide1 p {
+      font-size: 1.2rem;
+    }
+  }

@@ -1,25 +1,70 @@
 @import '../../../styles.scss';
 
+// .intro-content {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     gap: 20px;
+//     padding: 0 50px;
+// }
+
+// .intro-photo {
+//     width: 150px;
+//     height: 150px;
+//     border-radius: 50%;
+//     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+//     object-fit: cover;
+// }
+
+// .intro-content p {
+//     margin: 0;
+//     max-width: 600px;
+//     line-height: 1.6;
+//     text-align: left;
+// }
+
 .intro-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* デフォルトは横並び */
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     padding: 0 50px;
-}
-
-.intro-photo {
+    flex-wrap: wrap; /* コンテンツが画面幅を超えた場合に折り返す */
+  }
+  
+  .intro-photo {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     object-fit: cover;
-}
-
-.intro-content p {
+    margin-bottom: 20px; /* 小さい画面ではマージンを調整 */
+  }
+  
+  .intro-content p {
     margin: 0;
     max-width: 600px;
     line-height: 1.6;
     text-align: left;
-}
+    flex: 1; /* 残りのスペースを占める */
+  }
+  
+  /* メディアクエリでレスポンシブ対応 */
+  @media (max-width: 768px) {
+    .intro-content {
+      flex-direction: column; /* 小さい画面では縦並びに変更 */
+      padding: 0 20px; /* パディングを小さくする */
+    }
+  
+    .intro-photo {
+      width: 120px; /* 小さい画面での画像サイズを調整 */
+      height: 120px;
+    }
+  
+    .intro-content p {
+      text-align: left;
+      max-width: 100%; /* テキスト幅を広げる */
+    }
+  }
