@@ -11,19 +11,6 @@ import { Slide5Component } from './slides/slide5/slide5.component';
 import { Slide6Component } from './slides/slide6/slide6.component';
 import { Slide7Component } from './slides/slide7/slide7.component';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-// import hljs from 'highlight.js/lib/core';
-// import typescript from 'highlight.js/lib/languages/typescript';
-// import javascript from 'highlight.js/lib/languages/javascript';
-
-// hljs.registerLanguage('typescript', typescript);
-// hljs.registerLanguage('javascript', javascript);
-
-// export function getHighlightLanguages() {
-//   return {
-//     typescript: typescript,
-//     javascript: javascript
-//   };
-// }
 @NgModule({
   declarations: [
     AppComponent,
