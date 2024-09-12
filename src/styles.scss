@@ -2,39 +2,39 @@
 
 // Primary Colors
 $primary-color: #007bff; // Main blue color
-$secondary-color: #4a90e2; // Secondary light blue
-$tertiary-color: #4f9d7e; // Accent green
+// $secondary-color: #4a90e2; // Secondary light blue
 
 // Dark Colors
-$dark-blue-1: #000537; // Deep dark blue
-$dark-blue-2: #003366; // Dark blue
-$dark-gray: #333; // Dark gray for text
+$dark-blue-1: #00438f;
+$dark-blue-2: #0058b1;
+$dark-gray: #333;
+$dark-purple: #6A1B9A;
 
 // Light Colors
-$light-gray: #f4f4f4; // Background light gray
-$white: #fff; // Pure white
-$light-blue: #a6d2ea; // Light blue for tooltip, feature hover background
-$light-green: #d9eecd; // Light green for code background
+$white: #fff;
+$light-gray: #f4f4f4;
+$light-blue: #a6d2ea;
+$light-green: #d9eecd;
+$light-orange: #eed8b5;
+$light-purple: #f4e8f7;
 
 // Accent Colors
-$accent-orange: #f39c12; // Accent orange for headings
-$accent-purple: #d060e2; // Accent purple for feature headers
+$accent-green: #80c857;
+$accent-orange: #f39c12;
+$accent-purple: #d060e2;
+
 $highlight-color: #ff6347; // Highlight color for important text
 $fixed-highlight-color: #2ba284; // Fixed highlight color
 
-// Gradient Colors
-$gradient-start: #000537; // Start color for gradients
-$gradient-mid1: #003366; // Mid color 1 for gradients
-$gradient-mid2: #4a90e2; // Mid color 2 for gradients
-$gradient-mid3: #4f9d7e; // Mid color 3 for gradients
+// Background Gradient Colors
+$gradient-start: #000537;
+$gradient-mid1: #003366;
+$gradient-mid2: #4a90e2;
+$gradient-mid3: #4f9d7e;
 
-// Miscellaneous Colors
-$error-red: #ff6347; // Error message red
-$placeholder-gray: #f1f1f1; // Placeholder gray background
-$scroll-button-color: #0056b3; // Hover color for scroll button
-$footer-text-color: #fff; // Footer text color
-$tooltip-border-color: #888; // Tooltip border color
-
+// Background Gradient - 2
+$gradient2-start: #e0f7fa;
+$gradient2-end: #e1bee7;
 
 
 body {

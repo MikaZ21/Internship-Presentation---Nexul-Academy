@@ -15,14 +15,9 @@
 
 .feature-item {
     padding: 20px;
-    color: $dark-gray;
     box-sizing: border-box;
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.feature-item:hover {
-    background-color: $light-blue;
 }
 
 .feature-item p {
@@ -40,6 +35,14 @@
     border-radius: 0 0 10px 10px;
     margin: -20px -20px 20px -20px;
     font-size: 20px;
+    color: $dark-blue-1;
+}
+
+.feature-objective h3 i,
+.feature-description h3 i,
+.feature-development-process h3 i {
+    margin-right: 8px;
+    color: $dark-blue-1;
 }
 
 .feature-objective {
@@ -47,11 +50,11 @@
 }
 
 .feature-description {
-    background-color: #eed8b5;
+    background-color: $light-orange;
 }
 
 .feature-development-process {
-    background-color: #f2ddf6;
+    background-color: $light-purple;
     border-radius: 10px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex; 
@@ -84,7 +87,7 @@ img.logo-bg-img {
 }
 
 .feature-objective h3 {
-    background-color: #80c857;
+    background-color: $accent-green;
 }
 
 .feature-description h3 {

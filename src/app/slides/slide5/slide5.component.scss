@@ -35,6 +35,16 @@ img.logo-bg-img {
     padding-left: 10px;
 }
 
+h3 {
+    font-size: 22px;
+    color: $dark-blue-2;
+    margin-bottom: 15px;
+    text-align: center;
+    border-bottom: 2px solid $dark-blue-2;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
 pre.tooltip-code {
     padding-right: 15px;
     margin: 0;
@@ -97,7 +107,7 @@ pre.tooltip-code {
   }
     
   .approach-card {
-    background: linear-gradient(135deg, #e0f7fa, #e1bee7);
+    background: linear-gradient(135deg, $gradient2-start, $gradient2-end);
     padding: 20px;
     margin: 15px 0;
     border-radius: 10px;
@@ -121,13 +131,15 @@ pre.tooltip-code {
   
   .card-icon {
     font-size: 24px;
-    color: #2E86C1;
+    color: $dark-blue-2;
     margin-right: 10px;
+    margin-top: 15px;
   }
   
   .card-title {
     margin: 0;
     font-size: 18px;
-    color: #6A1B9A;
+    color: $dark-purple;
     font-weight: bold;
+    padding-top: 15px;
   }

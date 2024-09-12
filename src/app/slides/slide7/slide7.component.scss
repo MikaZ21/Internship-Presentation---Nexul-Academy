@@ -5,17 +5,17 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #e0f7fa, #e1bee7); /* 背景のグラデーション */
+    background: linear-gradient(to right, $gradient2-start, $gradient2-end);
     padding: 20px;
   }
   
   .message-card {
-    background: #FFFFFF;
+    background: $white;
     padding: 30px;
     max-width: 800px;
-    border-radius: 12px;
+    border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center; /* テキストを中央揃え */
+    text-align: center;
   }
   
   .message-card img {
@@ -24,20 +24,18 @@
   }
   
   .closing-title {
-    font-size: 26px;
-    color: #2E86C1;
     margin-bottom: 20px;
     font-weight: bold;
   }
   
   .closing-message, .closing-message-jp {
     font-size: 18px;
-    color: #5B2C6F;
+    color: $dark-purple;
     line-height: 1.6;
-    margin: 0 0 20px 0; /* メッセージ間に適度なスペースを追加 */
+    margin: 0 0 20px 0;
+    text-align: start;
   }
   
   .closing-message-jp {
-    font-size: 17px; /* 日本語テキストのフォントサイズを調整 */
-    color: #6A1B9A;
+    font-size: 17px;
   }

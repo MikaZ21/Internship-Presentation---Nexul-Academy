@@ -17,7 +17,7 @@
 
 .thankYou h2:nth-child(1) {
     color: $light-green;
-    -webkit-text-stroke: 2px $fixed-highlight-color;
+    -webkit-text-stroke: 2px $primary-color;
     margin-top:-200px;
 }
 
@@ -125,7 +125,7 @@
       transition: background-color 0.3s ease, border-color 0.3s ease; /* 背景色とボーダーのトランジション */
   
       &:hover {
-        background-color: #0056b3;
+        background-color: $primary-color;
         color: white;
         border: none; 
       }
