@@ -128,23 +128,130 @@ export class Slide5Component {
       }
   `;
 
+  codeSnippet3_2 = `
+      // reload$というBehaviorSubjectを定義。初期値は0。
+      // reload$はデータの再取得をトリガーするために使用されます。
+      reload$ = new BehaviorSubject<number>(0); 
+
+      // チェックリストデータを保持するObservable。
+      // reload$の変更に基づいて、非同期でデータを取得し、UIを更新します。
+      checklist$: Observable<ChecklistEditViewModel | null>;
+
+      // レッスンデータを内部で保持するためのプライベート変数。
+      // 外部から直接アクセスされないようにカプセル化されています。
+      private _lesson: Lesson | undefined | null; 
+
+      // レッスンデータを取得するためのゲッターメソッド。
+      // 外部から現在のレッスン情報を参照する際に使用されます。
+      get lesson(): Lesson | undefined | null {
+        return this._lesson;
+      }
+
+      // 親コンポーネントからレッスンデータを受け取るためのセッターメソッド。
+      // 新しいレッスンが設定された場合、内部プロパティに保存し、reload$の値を更新してデータの再取得をトリガーします。
+      @Input({required: true})
+      set lesson(item: Lesson | undefined | null) {
+        if (item) {
+          this._lesson = item; // 新しいレッスンを設定
+          this.reload$.next(this.reload$.value + 1); // reload$の値をインクリメントし、データの再取得をトリガー
+        }
+      }
+
+      // コンストラクタでChecklistServiceを注入し、checklist$ Observableを設定。
+      // checklist$はreload$の値が変わるたびに、新しいデータを取得し、UIを更新するために使用されます。
+      constructor(
+        private checklistService: ChecklistService // チェックリストデータを取得するためのサービス
+      ){
+        // reload$の変更を監視し、データを非同期で取得
+        this.checklist$ = this.reload$.pipe(
+          // reload$の値が変わるたびに、新しいObservableを生成
+          switchMap(_ => {
+            const lessonId = this._lesson?.lessonId; // 現在のレッスンIDを取得
+            if (lessonId) {
+              // レッスンIDに基づいてチェックリストを取得
+              return this.checklistService.getChecklistByLesson(lessonId); 
+            } else {
+              // レッスンIDがない場合、nullを返すObservableを返す
+              return of(null); 
+            }
+          }),
+          // 最新の結果をキャッシュし、複数の購読者で共有
+          shareReplay(),
+        );
+    }  
+  `;
+
   codeSnippet4 = `
-      this.page$ = combineLatest([this.pageId$, this.userIsEditorPlus$, this.reload$]).pipe(
-      tap(([_pageId, _isEditor, _]) => this.pageLoading$.next(true)),  // データのロードを開始
-      switchMap(([pageId, isEditor, _]) => {
-        return !!pageId && pageId.match(/tpt/i)
+    { // ルートがメインのコントロールを含むページ
+      path: ':siteLinkedItemId/view/:pageId',  // siteLinkedItemIdとpageIdを含むパス
+      component: CourseLayoutComponent,  // このパスに対応するコンポーネント
+      children: [  // 子ルートを定義
+        { // 表示されるページのコンテンツ（コースの概要またはレッスン）
+          path: '',  // 空のパスでフルマッチさせる
+          pathMatch: 'full',  // フルマッチのパスとして設定
+          title: 'Lesson',  // ページのタイトル
+          component: PageViewPageComponent  // このパスに対応するコンポーネント
+        }
+      ]
+    }
+`;
+
+codeSnippet4_2 = `
+    [HttpGet("by-page/{topicPageId}")]  // トピックページIDに基づいてコースを取得するエンドポイント
+    public async Task<IActionResult> GetCourseByPage(string topicPageId)
+    {
+        var topicPage = await _pageData.GetPageAsync(topicPageId);  // トピックページを非同期で取得
+        if (topicPage == null) return NotFound();  // トピックページが見つからない場合は404を返す
+
+        var linkedItemId = topicPage.LinkedItemId;  // LinkedItemIdを取得
+        if (linkedItemId.StartsWith("CRS", StringComparison.OrdinalIgnoreCase))  // LinkedItemIdがCRSで始まる場合
+        {
+            var course = await _courseData.GetAsync(linkedItemId);  // コースデータを取得
+            if (course == null) return NotFound();  // コースが見つからない場合は404を返す
+
+            var page = string.IsNullOrWhiteSpace(course.TopicPageId) ? null : await _pageData.GetPageWithContentAsync(course.TopicPageId);  // ページデータを取得
+            var pageContent = string.IsNullOrWhiteSpace(course.TopicPageId) ? null : page.Content;  // ページのコンテンツを取得
+            var courseModel = new CourseViewModel(course, page, pageContent);  // CourseViewModelを作成
+
+            return Ok(courseModel);  // 200 OKレスポンスでコースモデルを返す
+        }
+        // レッスンの取得も同様に処理...
+    }
+`;
+
+codeSnippet4_3 = `
+    getPreviewUrl(site: Site, page: PageContentViewModel) {
+      if (!page || !site || !site.siteLinkedItemId) return null; // 必要なデータが揃っていない場合は null を返す
+
+      if (page.linkedItemId.startsWith('CRS') || page.linkedItemId.startsWith('SLS')) {  // linkedItemIdがCRSまたはSLSで始まる場合
+        return this.env.environment.server + \`pages/\${page.siteLinkedItemId}/view/\${page.topicPageId}\`;  // Angularビュー用のURLを返す
+      } else if (!this.env.environment.production) {  // 開発環境の場合
+        return this.env.environment.server + page.slug + '?domain=' + site.subdomain;  // 開発環境用のURLを返す
+      } else if (!!site.customDomain) {  // カスタムドメインがある場合
+        return \`https://\${site.customDomain}/pages/\${page.siteLinkedItemId}/view/\${page.topicPageId}\`;  // カスタムドメイン用のURLを返す
+      } else {  // サブドメインがある場合
+        return \`https://\${site.siteLinkedItemId}.\${this.settingSvc.settings.productHost}/pages/\${page.siteLinkedItemId}/view/\${page.topicPageId}\`;  // サブドメイン用のURLを返す
+      }
+    }
+`;
+
+codeSnippet4_4 = `
+    this.page$ = combineLatest([this.pageId$, this.userIsEditorPlus$, this.reload$]).pipe(
+      tap(([_pageId, _isEditor, _]) => this.pageLoading$.next(true)),  // データのロードを開始（ローディング状態をtrueにする）
+      switchMap(([pageId, isEditor, _]) => {  // pageIdとユーザーの権限に基づいてコンテンツを取得
+        return !!pageId && pageId.match(/tpt/i)  // pageIdがテンプレートパターンにマッチする場合
           ? this.pageSvc.getTemplate(pageId)  // テンプレートを取得
           : this.pageSvc.getSingle(isEditor, pageId);  // 通常のページデータを取得
       }),
       shareReplay(),  // データをキャッシュして再利用
-      tap((page) => {
+      tap((page) => {  // 取得したページデータを処理
         let pc = (page as PageContentViewModel);
         if (!!pc.topicPageId) {
           this.designSvc.beginDesignPage(pc);  // デザインページを開始
         }
-        this.pageLoading$.next(false);  // データのロードが完了
+        this.pageLoading$.next(false);  // データのロードが完了（ローディング状態をfalseにする）
       }),
-      shareReplay(),
+      shareReplay(),  // 再利用のためにデータをキャッシュ
     );
-  `;
+`;
 }

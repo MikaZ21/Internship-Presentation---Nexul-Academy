@@ -64,3 +64,11 @@ images/Mika.jpeg
 images/nexul_academy_icon_logo_300dpi-circle.png
 src/assets/images/Mika.jpeg
 src/assets/images/nexul_academy_icon_logo_300dpi-circle.png
+
+# ビデオファイルを無視する
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.flv
+*.wmv

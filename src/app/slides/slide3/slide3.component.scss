@@ -63,6 +63,27 @@
     padding: 20px; 
 }
 
+.feature-demo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    width: 100%; /* 全体の幅に合わせる */
+    max-width: 550px; /* 親コンテナの最大幅を制限 */
+}
+
+.feature-demo {
+    width: 100%; /* コンテナに合わせて幅を調整 */
+    height: auto; /* 自動的に高さを調整 */
+    max-width: 100%; /* 親コンテナの最大幅を超えないように設定 */
+    border-radius: 10px;
+    object-fit: contain; /* コンテナ内での表示を調整 */
+}
+
 .logo-container {
     width: 100%;
     overflow: hidden; 
@@ -96,18 +117,6 @@ img.logo-bg-img {
 
 .feature-development-process h3 {
     background-color: $accent-purple;
-}
-
-.featur-demo-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
-
-.feature-demo {
-    max-width: 100%;
-    border-radius: 10px;
 }
 
 @media (max-width: 768px) {

@@ -77,13 +77,19 @@
 
         <p><b>Cause:</b> 
             Insufficient use of <code class="highlight-code">BehaviorSubject</code> and <code class="highlight-code">Observable</code> 
-            to manage asynchronous data processing and synchronize the form state.
+            to manage asynchronous data processing and synchronize the form state in real-time.
         </p>
 
         <p><b>Solution:</b> 
-            Used <code class="highlight-code">this.itemAdded$</code> to monitor item add/delete and 
+            Used <code class="highlight-code">itemAdded$</code> to monitor the add/delete of checklist items and 
             employed <code class="highlight-code">combineLatest</code> and <code class="highlight-code">valueChanges</code> 
-            to watch form changes in real time, ensuring the UI always reflects the latest state.
+            to watch form changes in real time. This ensures that the UI always reflects the latest state by recalculating the character count for
+            each item whenever there is a change in the form or checklist items.
+        </p>
+
+        <p><b>Key Point:</b>
+            The combination of <code class="highlight-code">BehaviorSubject</code> and <code class="highlight-code">combineLatest</code> 
+            allows the form and checklist to synchronize seamlessly, reflecting changes immediately without manual refreshes.
         </p>
         <br>
 
@@ -103,7 +109,7 @@
         <h3>Challenge 3: Widget UI Display and Component Refresh Issues</h3>
         <p><b>Problem:</b>
             The checklist widget failed to update the component state when users switched between different lessons, 
-            not reflecting the latest checklist data.
+            resulting in the UI not reflecting the latest checklist data for the selected lesson.
         </p>
 
         <p><b>Cause:</b> 
@@ -112,17 +118,27 @@
         </p>
 
         <p><b>Solution:</b> 
-            Monitored the lesson property passed via <code class="highlight-code">&#64;Input</code> and triggered a reload 
-            by updating <code class="highlight-code">reload$</code> whenever a change was detected. This ensured the component state remained current.        
+            Monitored the <code class="highlight-code">lesson</code> property passed via <code class="highlight-code">&#64;Input</code> 
+            and triggered a reload by updating <code class="highlight-code">reload$</code> whenever a change was detected.
+            This ensured the component state remains current by re-fetching the checklist data associated with the current lesson.        
         </p>
 
-        <p><b>Key Point:</b> 
-            Detected changes in lessons and refreshed the component using <code class="highlight-code">reload$</code> to reflect the latest state.        </p>
+        <p><b>Key Point:</b>
+            By detecting changes in the <code class="highlight-code">lesson</code> 
+            input property and using <code class="highlight-code">reload$</code> 
+            to trigger data re-fetching, the component can refresh and display 
+            the latest checklist data without requiring a manual refresh.
+        </p>
         <br>
 
         <div class="code-wrapper">
             <div class="language-name">typescript</div>
             <pre><code [highlight]="codeSnippet3">
+            </code></pre>
+        </div>
+        <div class="code-wrapper">
+            <div class="language-name">typescript</div>
+            <pre><code [highlight]="codeSnippet3_2">
             </code></pre>
         </div>
     </div>
@@ -135,36 +151,66 @@
                 class="logo-bg-img">
         </div>
 
-        <h3>Challenge 4: Complexity of Routing Configuration and URL Mismatch</h3>
+        <h3>Challenge 4: Transitioning from Razor Pages to Angular Views for lesson page display</h3>
         <p><b>Problem:</b>
-            When displaying the lesson page containing a checklist, issues with URL mismatches and improper 
-            routing settings caused incorrect content to be displayed. 
-            For instance, the path <code class="highlight-code">:siteLinkedItemId/view/:id</code> 
-            sometimes failed to load the lesson correctly.
+            The lesson view page, which included a checklist, was initially displayed using Razor pages. 
+            However, the requirement was to transition this page to be displayed in Angular instead, 
+            ensuring consistent behavior and styling across the application.
         </p>
 
         <p><b>Cause:</b> 
-            The routing configuration was complex, 
-            and the path structures for loading different components and data were not properly defined.        
+            The original routing and URL configuration were set up for Razor views, 
+            which led to issues when switching to Angular views. 
+            The routing paths were mismatched or not properly configured, 
+            causing the Angular components to fail in correctly displaying the lesson content. 
+            Additionally, parameters necessary for rendering the lesson content dynamically were not 
+            accurately passed in the Angular setup.
         </p>
 
-        <p><b>Solution:</b> 
-            Simplified the route definitions and ensured that the correct content is loaded in 
-            <code class="highlight-code">PageViewPageComponent</code> by accurately passing path parameters. 
-            Also, used <code class="highlight-code">combineLatest</code> and <code class="highlight-code">switchMap</code> 
-            to monitor changes in <code class="highlight-code">pageId</code> and <code class="highlight-code">siteLinkedItemId</code> 
-            and precisely control data fetching and content rendering.        
+        <p><b>Solution Step.1: Refactor Routing Definitions</b><br>
+            Updated route definitions in <code class="highlight-code">page-admin-routes.ts</code>
+            to ensure that Angular components such as <code class="highlight-code">CourseLayoutComponent</code> 
+            and <code class="highlight-code">PageViewPageComponent</code> are properly loaded based on the URL parameters. 
+            This change ensures that lessons are displayed using Angular views instead of Razor pages.
         </p>
-    
-        <p><b>Key Point:</b> 
-            Utilized <code class="highlight-code">combineLatest</code> and <code class="highlight-code">switchMap</code> 
-            to achieve dynamic content retrieval and display based on URL parameters and user permissions.    
-        </p>    
-        <br>
-
         <div class="code-wrapper">
             <div class="language-name">typescript</div>
             <pre><code [highlight]="codeSnippet4">
+            </code></pre>
+        </div>
+        <br>
+        <p><b>Solution Step.2: Update API Endpoints for Course and Lesson Data Fetching</b><br>
+            Modified API endpoints in <code class="highlight-code">CourseController.cs</code> 
+            and <code class="highlight-code">SchoolController.cs</code> to fetch course and lesson data 
+            based on the new Angular routing structure. 
+            This involved adding a new endpoint to retrieve course and lesson data by <code class="highlight-code">topicPageId</code>.
+        </p>
+        <div class="code-wrapper">
+            <div class="language-name">csharp</div>
+            <pre><code [highlight]="codeSnippet4_2">
+            </code></pre>
+        </div>
+        <br>
+        <p><b>Solution Step.3: Dynamic URL Handling for Angular View Generation</b><br>
+            Adjusted the <code class="highlight-code">getPreviewUrl</code> method in <code class="highlight-code">content-design-section.component.ts</code> 
+            to generate the correct URL for both development and production environments. 
+            This ensures the correct Angular view is loaded based on the environment and the provided URL parameters.
+        </p>
+        <div class="code-wrapper">
+            <div class="language-name">typescript</div>
+            <pre><code [highlight]="codeSnippet4_3">
+            </code></pre>
+        </div>
+        <br>
+        <p><b>Solution Step.4: CombineLatest and SwitchMap for Dynamic Data Loading</b><br>
+            Utilized <code class="highlight-code">combineLatest</code> and <code class="highlight-code">switchMap</code> 
+            to dynamically fetch content based on the route parameters <code class="highlight-code">(pageId)</code> 
+            and user roles <code class="highlight-code">(userIsEditorPlus)</code>. 
+            This ensures that the lesson content is correctly loaded and updated based on the user’s navigation actions.
+        </p>
+        <div class="code-wrapper">
+            <div class="language-name">typescript</div>
+            <pre><code [highlight]="codeSnippet4_4">
             </code></pre>
         </div>
     </div>

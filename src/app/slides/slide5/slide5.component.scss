@@ -32,7 +32,7 @@ img.logo-bg-img {
 
 .challenge p {
     text-align: left;
-    padding-left: 10px;
+    padding: 0 180px;
 }
 
 h3 {
@@ -171,7 +171,8 @@ pre.tooltip-code {
       text-align: center; /* タイトルを中央寄せに */
     }
 
-    p {
-        text-align: left;
-    }
+    .challenge p {
+      padding:0 10px;
   }
+
+}
