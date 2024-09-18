@@ -1,47 +1,47 @@
 @import '../../../styles.scss';
 
 #slide3 {
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 .feature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
-    gap: 20px;
-    padding: 0 50px;
+    gap: 1.25rem;
+    padding: 0 3.125rem;
 }
 
 .feature-item {
-    padding: 20px;
+    padding: 1.25rem;
     box-sizing: border-box;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 .feature-item p {
     margin: 0;
     line-height: 1.6;
     text-align: start;
-    padding-left: 10px;
+    padding-left: 0.625rem;
 }
 
 .feature-objective h3,
 .feature-description h3,
 .feature-development-process h3 {
-    padding: 10px;
-    padding-left: 30px;
-    border-radius: 0 0 10px 10px;
-    margin: -20px -20px 20px -20px;
-    font-size: 20px;
+    padding: 0.625rem;
+    padding-left: 1.875rem;
+    border-radius: 0 0 0.625rem 0.625rem;
+    margin: -1.25rem -1.25rem 1.25rem -1.25rem;
+    font-size: 1.25rem;
     color: $dark-blue-1;
 }
 
 .feature-objective h3 i,
 .feature-description h3 i,
 .feature-development-process h3 i {
-    margin-right: 8px;
+    margin-right: 0.5rem;
     color: $dark-blue-1;
 }
 
@@ -55,32 +55,32 @@
 
 .feature-development-process {
     background-color: $light-purple;
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0.625rem; 
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     display: flex; 
     flex-direction: column; 
     justify-content: space-between; 
-    padding: 20px; 
+    padding: 1.25rem; 
 }
 
 .feature-demo-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 0.625rem;
     box-sizing: border-box;
     background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     margin: 0 auto;
     width: 100%; /* 全体の幅に合わせる */
-    max-width: 550px; /* 親コンテナの最大幅を制限 */
+    max-width: 34.375rem; /* 親コンテナの最大幅を制限 */
 }
 
 .feature-demo {
     width: 100%; /* コンテナに合わせて幅を調整 */
     height: auto; /* 自動的に高さを調整 */
     max-width: 100%; /* 親コンテナの最大幅を超えないように設定 */
-    border-radius: 10px;
+    border-radius: 0.625rem;
     object-fit: contain; /* コンテナ内での表示を調整 */
 }
 
@@ -97,10 +97,10 @@
 
 img.logo-bg-img {
     position: relative; 
-    bottom: -30px; 
+    bottom: -1.875rem; 
     left: 35%; 
     transform: translateX(-50%); 
-    width: 300px; 
+    width: 18.75rem; 
     height: auto;
     opacity: 0.2; 
     pointer-events: none;
@@ -122,10 +122,10 @@ img.logo-bg-img {
 @media (max-width: 768px) {
     .feature-grid {
         grid-template-columns: 1fr; /* Switch to single-column layout */
-        padding: 0 20px; /* Reduce padding for smaller screens */
+        padding: 0 1.25rem; /* Reduce padding for smaller screens */
     }
 
     .feature-item {
-        padding: 15px; /* Reduce padding for smaller screens */
+        padding: 0.9375rem; /* Reduce padding for smaller screens */
     }
 }
