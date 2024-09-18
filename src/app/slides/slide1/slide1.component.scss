@@ -53,7 +53,7 @@
     background-size: 300% 300%;
     animation: gradientBackground 15s ease infinite; // Uses global keyframes from styles.scss
     color: $white;
-    padding: 50px 20px; /* パディングを調整 */
+    padding: 3rem 1.25rem; /* パディングを調整 */
     min-height: 100vh; /* コンテンツの高さに応じて調整 */
     text-align: center;
     border-radius: 0;
@@ -66,7 +66,7 @@
   }
   
   #slide1 h1, #slide1 h2, #slide1 p {
-    margin: 10px 0; /* 各要素のマージンを調整 */
+    margin: 0.625rem 0; /* 各要素のマージンを調整 */
   }
   
   #slide1 p {
@@ -75,16 +75,16 @@
   }
   
   .logo {
-    width: 100px; /* レスポンシブ対応でサイズ調整 */
+    width: 6.25rem; /* レスポンシブ対応でサイズ調整 */
     height: auto;
-    margin-bottom: 20px; /* 下にスペースを追加 */
+    margin-bottom: 1.25rem; /* 下にスペースを追加 */
     cursor: pointer;
   }
-  
+
   /* メディアクエリでレスポンシブ対応 */
   @media (max-width: 768px) {
     #slide1 {
-      padding: 30px 10px;
+      padding: 1.875rem 0.625rem;
     }
     
     #slide1 h1 {
