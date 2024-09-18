@@ -29,23 +29,23 @@
     flex-direction: row; /* デフォルトは横並び */
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 0 50px;
+    gap: 1.875rem;
+    padding: 0 3.125rem;
     flex-wrap: wrap; /* コンテンツが画面幅を超えた場合に折り返す */
   }
   
   .intro-photo {
-    width: 150px;
-    height: 150px;
+    width: 9.375rem;
+    height: 9.375rem;
     border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
     object-fit: cover;
-    margin-bottom: 20px; /* 小さい画面ではマージンを調整 */
+    margin-bottom: 1.25rem; /* 小さい画面ではマージンを調整 */
   }
   
   .intro-content p {
     margin: 0;
-    max-width: 600px;
+    max-width: 37.5rem;
     line-height: 1.6;
     text-align: left;
     flex: 1; /* 残りのスペースを占める */
@@ -55,12 +55,12 @@
   @media (max-width: 768px) {
     .intro-content {
       flex-direction: column; /* 小さい画面では縦並びに変更 */
-      padding: 0 20px; /* パディングを小さくする */
+      padding: 0 1.25rem; /* パディングを小さくする */
     }
   
     .intro-photo {
-      width: 120px; /* 小さい画面での画像サイズを調整 */
-      height: 120px;
+      width: 7.5rem; /* 小さい画面での画像サイズを調整 */
+      height: 7.5rem;
     }
   
     .intro-content p {
