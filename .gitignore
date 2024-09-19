@@ -58,11 +58,3 @@ npm-debug.log*
 
 # Local build artifacts
 /build/
-
-# ビデオファイルを無視する
-*.mp4
-*.mov
-*.avi
-*.mkv
-*.flv
-*.wmv
