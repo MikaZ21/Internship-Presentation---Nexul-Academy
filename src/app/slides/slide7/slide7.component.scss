@@ -10,16 +10,16 @@
   
   .message-card {
     background: $white;
-    padding: 30px;
+    padding: 1.875rem;
     max-width: 100%; /* カードの幅をスライドの幅に合わせる */
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
     text-align: center;
 }
   
   .message-card img {
-    width: 100px;
-    margin: 0 20px;
+    width: 6.25rem;
+    margin: 0 1.25rem;
   }
   
   .closing-title {
@@ -28,38 +28,38 @@
   }
   
   .closing-message, .closing-message-jp {
-    font-size: 18px;
+    font-size: 1.125rem;
     color: $dark-purple;
     line-height: 1.6;
-    margin: 0 0 20px 0;
+    margin: 0 0 1.25rem 0;
     text-align: start;
     max-width: 700px; /* テキストの最大幅を設定 */
-    padding: 15px;
+    padding: 0.9375rem;
   }
   
   .closing-message-jp {
-    font-size: 17px;
+    font-size: 1.0625rem;
   }
 
   /* メディアクエリでレスポンシブ対応 */
 @media (max-width: 768px) {
   #slide7 {
     height: auto;
-    padding: 10px;
+    padding: 0.625rem;
   }
 
   .message-card {
-    padding: 40px; 
+    padding: 2.5rem; 
   }
 
   .message-card img {
-    width: 80px;
+    width: 5rem;
   }
 
   .closing-message,
   .closing-message-jp {
-    font-size: 16px;
+    font-size: 1rem;
     text-align: left;
-    margin: 0 0 15px 0;
+    margin: 0 0 0.9375rem 0;
   }
 }
