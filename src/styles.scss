@@ -47,11 +47,11 @@ body {
 }
 
 .slide {
-    padding: 50px 20px;
-    max-width: 1200px;
-    margin: 50px auto;
+    padding: 3.125rem 1.25rem;
+    max-width: 75rem;
+    margin: 3.125rem auto;
     background-color: $white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
 }
 
 @keyframes gradientBackground {
@@ -68,19 +68,19 @@ body {
 
 .gurufyre-link {
     display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
+    margin-top: 0.625rem;
+    padding: 0.625rem 1.25rem;
     background-color: $primary-color;
     color: $white;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 0.3125rem;
+    font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
 .gurufyre-link:hover {
     background-color: $dark-blue-2;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0.9375rem rgba(255, 255, 255, 0.8);
 }
 
 h1, h2 {
@@ -89,21 +89,21 @@ h1, h2 {
 }
 
 h1 {
-    margin-bottom: 10px;
-    font-size: 52px;
+    margin-bottom: 0.625rem;
+    font-size: 3.25rem;
 }
 
 h2 {
-    margin-bottom: 20px;
-    font-size: 32px;
+    margin-bottom: 1.25rem;
+    font-size: 2rem;
     font-family: "Handlee", cursive;
     font-weight: bold;
     font-style: normal;
 }
 
 p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 1.125rem;
+    margin-bottom: 1.25rem;
     text-align: center;
 }
 
@@ -118,12 +118,12 @@ a {
 .arrow-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     position: relative;
 }
 
 .down-arrow {
-    font-size: 40px;
+    font-size: 2.5rem;
     color: $dark-gray;
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
@@ -132,21 +132,21 @@ a {
 
 .down-arrow:hover {
     color: $primary-color;
-    transform: translateY(10px);
+    transform: translateY(0.625rem);
 }
 
 .logo-bg-img {
     position: absolute;
-    bottom: -40px;
-    left: 280px;
-    width: 300px;
+    bottom: -2.5rem;
+    left: 17.5rem;
+    width: 18.75rem;
     height: auto;
     opacity: 0.2;
 }
 
 .code-wrapper {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     z-index: 10;
 }
   
@@ -156,20 +156,20 @@ a {
     left: 0;
     background-color: $accent-orange;
     color: #333;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
     font-weight: bold;
 }
 
 .code-wrapper code.hljs {
-    padding: 2em;
+    padding: 2rem;
 }
 
 code.highlight-code {
     font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace;
-    font-size: 16px;
+    font-size: 1rem;
     background-color: $light-green;
-    padding-left: 3px;
-    padding-right: 3px;
+    padding-left: 0.1875rem;
+    padding-right: 0.1875rem;
 }
