@@ -35,12 +35,27 @@
   }
 
 @media (max-width: 768px) {
-    .skills-container {
-        grid-template-columns: 1fr; /* Stack columns vertically on smaller screens */
+    h3 {
+        margin: 0 auto;
+        padding: 0.5rem 0;
+        text-align: center; 
+        font-size: 1.2rem;
     }
-    .skill-block {
-        height: auto; /* Allow blocks to adjust height naturally */
-        margin-bottom: 1.25rem; /* Add space between stacked items */
+
+    .skill-column {
+        width: 100%; 
+        padding: 0.5rem; /* パディングを少し小さく */
+        margin: 0; /* 余白をなくす */
+        align-items: center;
+    }
+
+    .skills-container {
+        padding: 0.5rem; /* コンテナの左右パディングを小さく */
+        grid-template-columns: 1fr; /* 一列に縦に並べる */
+    }
+
+    .skills-container .material-row {
+        gap: 1rem;
     }
 }
 

@@ -156,6 +156,10 @@ pre.tooltip-code {
       max-width: 100%; /* 最大幅を100%に設定 */
       margin: 0.625rem 0; /* マージンを調整 */
     }
+
+    .approach-card p {
+      text-align: left;
+    }
   
     .card-header {
       flex-direction: column; /* 小さい画面では縦並びに */

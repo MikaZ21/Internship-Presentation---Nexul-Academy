@@ -101,6 +101,12 @@ h2 {
     font-style: normal;
 }
 
+@media screen and (max-width: 600px) {
+    h2 {
+      line-height: 1.2;
+    }
+}
+
 p {
     font-size: 1.125rem;
     margin-bottom: 1.25rem;
