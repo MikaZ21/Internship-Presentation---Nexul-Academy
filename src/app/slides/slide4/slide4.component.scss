@@ -1,24 +1,24 @@
 @import '../../../styles.scss';
 
 #slide4 {
-    padding: 25px;
+    padding: 1.5625rem;
 }
 
 .skills-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; 
+    gap: 1.25rem; 
     width: 100%;
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem;
     box-sizing: border-box;
 }
 
 .skill-block {
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.25rem;
+    border-radius: 0.625rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column; /* Stack content vertically */
     align-items: center; /* Center horizontally */
@@ -40,7 +40,7 @@
     }
     .skill-block {
         height: auto; /* Allow blocks to adjust height naturally */
-        margin-bottom: 20px; /* Add space between stacked items */
+        margin-bottom: 1.25rem; /* Add space between stacked items */
     }
 }
 
@@ -48,7 +48,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     width: 100%;
     box-sizing: border-box;
 }
@@ -58,48 +58,48 @@ h2 {
 }
 
 h3 {
-    font-size: 22px;
+    font-size: 1.375rem;
     color: $dark-blue-2;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     text-align: center;
     border-bottom: 2px solid $dark-blue-2;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
     width: 100%;
 }
 
 .skill-block h4 {
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     color: $dark-purple;
 }
 
 .skill-block p {
     text-align: left;
     margin: 0;
-    padding-left: 10px;
+    padding-left: 0.625rem;
 }
 
 .material-row {
     display: flex; /* Flexboxで横並びに */
     align-items: center; /* アイコンとテキストを中央揃え */
-    gap: 10px; /* アイコンとテキストの間のスペース */
-    margin-bottom: 10px; /* 下に少しスペース */
+    gap: 5rem; /* アイコンとテキストの間のスペース */
+    margin-bottom: 0.625rem;
 }
 
 .material-row img {
-    width: 80px; /* アイコンのサイズを調整 */
+    width: 7.5rem; /* アイコンのサイズを調整 */
     height: auto; /* アスペクト比を保つ */
 }
 
 .material-row span {
-    font-size: 30px;
+    font-size: 1.875rem;
     font-weight: bold;
 }
 
 .icon-row {
     display: flex;
     justify-content: center;
-    gap: 10px; 
-    margin-bottom: 10px;
+    gap: 0.625rem; 
+    margin-bottom: 0.625rem;
     align-items: center; 
     flex-wrap: wrap;
 }
@@ -111,9 +111,33 @@ h3 {
 
 .agile-block > .logo-bg-img {
     position: absolute;
-    bottom: -35px;
-    left: 100px;
-    width: 300px;
+    bottom: -2.1875rem;
+    left: 6.25rem;
+    width: 18.75rem;
     height: auto;
     opacity: 0.1;
+}
+
+.angular-logo {
+    width: 15.625rem;
+}
+
+.angular-material-logo {
+    width: 6.25rem;
+}
+
+.csharp-logo {
+    width: 9.375rem;
+}
+
+.dotnet-logo {
+    width: 7.5rem;
+}
+
+.azure-logo {
+    width: 7.5rem;
+}
+
+.github-logo {
+    width: 7.5rem;
 }
