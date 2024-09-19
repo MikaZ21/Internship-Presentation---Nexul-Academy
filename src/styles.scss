@@ -101,9 +101,17 @@ h2 {
     font-style: normal;
 }
 
-@media screen and (max-width: 600px) {
+@media (max-width: 768px) {
     h2 {
       line-height: 1.2;
+    }
+
+    a:hover, a:focus, a:active,
+    button:hover, button:focus, button:active,
+    .icon:hover, .icon:focus, .icon:active {
+        outline: none !important;
+        background-color: initial !important;
+        color: inherit !important;
     }
 }
 
