@@ -8,35 +8,35 @@
 .content-container {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  gap: 1.25rem;
   flex-wrap: wrap; /* フレックスボックスで折り返しを許可 */
   margin: 0 auto;
   max-width: 1200px; /* コンテンツ全体の最大幅を設定 */
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 .content-left, .content-right {
   flex: 1;
-  min-width: 300px; /* カードの最小幅を設定 */
+  min-width: 18.75rem; /* カードの最小幅を設定 */
   max-width: 100%; /* カードの最大幅を100%に設定 */
-  margin-bottom: 20px; /* 下部のマージンを追加 */
+  margin-bottom: 1.25rem; /* 下部のマージンを追加 */
 }
 
 .section-title {
-  font-size: 22px;
+  font-size: 1.375rem;
   color: $dark-blue-2;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
   text-align: center;
   border-bottom: 2px solid $dark-blue-2;
-  padding-bottom: 10px;
+  padding-bottom: 0.625rem;
 }
 
 .card {
   background: $white;
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.9375rem;
+  margin: 0.9375rem 0;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   border: 2px solid transparent; /* 初期状態では透明な境界線 */
   transition: transform 0.2s, border 0.2s; /* サイズと境界線のトランジションを追加 */
   position: relative; /* Zインデックスのために相対位置を設定 */
@@ -53,17 +53,17 @@
 .card-header {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 
 .card-icon {
-  font-size: 22px;
+  font-size: 1.375rem;
   color: $dark-blue-2;
-  margin-right: 10px;
+  margin-right: 0.625rem;
 }
 
 .card-title {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   color: $dark-purple;
   margin: 0;
@@ -71,7 +71,7 @@
 
 .card p {
   text-align: left;
-  padding: 0 15px;
+  padding: 0 0.9375rem;
 }
 
 .logo-container {
@@ -81,20 +81,20 @@
 }
 
 .logo-bg-img {
-  width: 500px; /* 親要素の幅に合わせる */
+  width: 31.25rem; /* 親要素の幅に合わせる */
   height: auto;
   opacity: 0.1;
   pointer-events: none;
   position: absolute; /* 絶対位置で配置 */
-  bottom: -50px;
-  left: -460px;
+  bottom: -3.125rem;
+  left: -28.75rem;
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
   .content-container {
     flex-direction: column;
-    padding: 0 10px;
+    padding: 0 0.625rem;
   }
 
   .content-left, .content-right {
@@ -103,18 +103,18 @@
   }
 
   .card {
-    margin: 10px 0;
+    margin: 0.625rem 0;
     width: 100%;
   }
 
   .logo-container {
     position: static;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
 
   .logo-bg-img {
-    width: 300px;
+    width: 18.75rem;
     height: auto;
     position: static;
     margin: 0 auto;
