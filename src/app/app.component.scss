@@ -13,7 +13,7 @@
   text-align: center;
   z-index: 5;
   white-space: nowrap;
-  right: 40px; /* 右からの位置調整 */
+  right: 2.5rem; /* 右からの位置調整 */
 }
 
 .thankYou h2 {
@@ -44,9 +44,9 @@
 
 .footer-emoji {
   position: absolute;
-  top: -100px; /* フッターのエッジ外側に配置 */
+  top: -6.25rem; /* フッターのエッジ外側に配置 */
   left: 0;    /* 初期位置 */
-  font-size: 75px; /* 絵文字サイズ調整 */
+  font-size: 4.6875rem; /* 絵文字サイズ調整 */
   z-index: 2; /* エッジの上に表示 */
   animation: moveAlongEdge 35s linear infinite; /* アニメーションを設定 */
 }
@@ -82,10 +82,10 @@
 } 
 
 .footer {
-    padding: 20px 0;
+    padding: 1.25rem 0;
     text-align: center;
     color: $white;
-    margin-top: 40px;
+    margin-top: 2.5rem;
     width: 100%;
     background: linear-gradient(
         -10deg, 
@@ -99,7 +99,7 @@
     background-size: 300% 300%;
     animation: gradientBackground 15s ease infinite;
     position: relative; /* Make the footer relative */
-    height: 180px;
+    height: 11.25rem;
 }
 
 .footer::before {
@@ -126,24 +126,24 @@
 
 .footer p {
     margin: 0;
-    padding-top: 20px;
-    font-size: 14px;
+    padding-top: 1.25rem;
+    font-size: 0.875rem;
 }
 
 .social-icons {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 70px;
+    gap: 1.25rem;
+    margin-top: 4.375rem;
 }
 .social-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px; /* 背景の四角のサイズ */
-    height: 50px;
+    width: 3.125rem; /* 背景の四角のサイズ */
+    height: 3.125rem;
     background-color: $primary-color; /* 背景色（青色） */
-    border-radius: 10px;
+    border-radius: 0.625rem;
     transition: transform 0.3s, box-shadow 0.3s; 
     color: white; /* アイコンの色を白に設定 */
     font-size: 2.7rem; /* アイコンのサイズを調整 */
@@ -158,13 +158,13 @@
   .social-icon:hover {
     background-color: $dark-blue-2;
     transform: scale(1.2); /* ホバー時にアイコンを大きくする */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8); /* 光るような白いシャドー */
+    box-shadow: 0 0 0.9375rem rgba(255, 255, 255, 0.8); /* 光るような白いシャドー */
   }
 
 .scroll-up-button {
     position: fixed; /* フッターの直上に固定 */
-    right: 20px; /* 右端に配置 */
-    bottom: 100px; /* フッターの少し上に配置 */
+    right: 1.25rem; /* 右端に配置 */
+    bottom: 6.25rem; /* フッターの少し上に配置 */
     opacity: 0; /* 初期状態は非表示 */
     transition: opacity 0.7s ease; /* フェードインの効果 */
     z-index: 10; /* 他の要素の上に表示されるように */
@@ -175,8 +175,8 @@
       font-weight: bold;
       border: 2px solid var(--secondary-color); /* ボーダー色を設定 */
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 3.75rem;
+      height: 3.75rem;
       display: flex; /* アイコンを中央に配置 */
       align-items: center; /* 縦方向に中央揃え */
       justify-content: center; /* 横方向に中央揃え */
@@ -194,7 +194,7 @@
 
 
 .scroll-up-button i {
-    font-size: 20px; 
+    font-size: 1.25rem; 
     transform: scale(1.2, 1.4);
 }
 
@@ -203,7 +203,7 @@
   .thankYou {
     transform: rotate(-10deg) translateY(-120px);
     width: auto;
-    right: 10px;
+    right: 0.625rem;
   }
 
   .thankYou h2 {
@@ -211,12 +211,12 @@
   }
 
   .scroll-up-button button {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .scroll-up-button i {
-    font-size: 16px;
+    font-size: 1rem;
     transform: scale(1.2, 1.4);
   }
 }
