@@ -46,8 +46,8 @@
 
   .team-photo {
     max-width: 66%; /* Ensures the image doesn't exceed the card's width */
-    margin-top: 1.5rem; /* Adds spacing from the content above */
-    border-radius: 0.5rem; /* Optional: Adds rounded corners to the image */
+    margin-top: 1.5rem;
+    border-radius: 0.5rem;
   }
 
   /* メディアクエリでレスポンシブ対応 */
@@ -73,8 +73,7 @@
     margin: 0 0 0.9375rem 0;
   }
 
-  // .team-photo {
-  //   margin: 3rem 5rem 3rem 5rem;
-  //   max-width: 100%; 
-  // }
+  .team-photo {
+    max-width: 84%; 
+  }
 }
