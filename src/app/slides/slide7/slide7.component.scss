@@ -6,13 +6,16 @@
     align-items: center;
     height: auto;
     background: linear-gradient(to right, $gradient2-start, $gradient2-end);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .message-card {
     background: $white;
     padding: 1.875rem;
     max-width: 100%; /* カードの幅をスライドの幅に合わせる */
-    border-radius: 0.625rem;
+    border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -31,7 +34,7 @@
     font-size: 1.125rem;
     color: $dark-purple;
     line-height: 1.6;
-    margin: 0 0 1.25rem 0;
+    margin: 0 0 -0.75rem 0;
     text-align: start;
     max-width: 700px; /* テキストの最大幅を設定 */
     padding: 0.9375rem;
@@ -39,6 +42,12 @@
   
   .closing-message-jp {
     font-size: 1.0625rem;
+  }
+
+  .team-photo {
+    max-width: 66%; /* Ensures the image doesn't exceed the card's width */
+    margin-top: 1.5rem; /* Adds spacing from the content above */
+    border-radius: 0.5rem; /* Optional: Adds rounded corners to the image */
   }
 
   /* メディアクエリでレスポンシブ対応 */
@@ -63,4 +72,9 @@
     text-align: left;
     margin: 0 0 0.9375rem 0;
   }
+
+  // .team-photo {
+  //   margin: 3rem 5rem 3rem 5rem;
+  //   max-width: 100%; 
+  // }
 }
